@@ -1,0 +1,40 @@
+h1 {
+    color: red;
+    border:solid;
+    border-color: black;
+}
+
+p {
+    color: red;
+}
+
+h2 {
+    color:red;
+    border:solid;
+    border-color: black;
+    background-color: rgb(19, 216, 216);
+}
+
+
+
+
+
+ul li {
+        border: solid;
+        border-color:rgb(88, 6, 6);
+        background-color: rgb(133, 202, 219);
+        padding: 6px;
+        font: 1em sans-serif;
+}
+
+ul li:hover {
+        border: solid;
+        border-color:rgb(221, 60, 11);
+        background-color: rgb(201, 188, 15);
+        padding: 12px;
+        cursor: pointer
+}
+body {
+    background-color:white
+    
+}
