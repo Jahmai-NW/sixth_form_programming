@@ -24,13 +24,13 @@ while running:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        player_pos.y -= 1 * dt
+        player_pos.y -= 20000 * dt
     if keys[pygame.K_s]:
-        player_pos.y += 1 * dt
+        player_pos.y += 20000 * dt
     if keys[pygame.K_a]:
-        player_pos.x -= 1 * dt
+        player_pos.x -= 20000 * dt
     if keys[pygame.K_d]:
-        player_pos.x += 1 * dt
+        player_pos.x += 20000 * dt
 
     # flip() the display to put your work on screen
     pygame.display.flip()
