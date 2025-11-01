@@ -1,7 +1,11 @@
-def convert_temperature(celsius):
-    fahrenheit = (celsius * 9/5) + 32
-    print(celsius, "°C is equal to", fahrenheit, "F")
-
-
-temp = float(input("Enter temperature in Celsius: "))
-convert_temperature(temp)
+ # pass multiple results back from a function
+def calc(a,b):
+  constantVal = 2
+  x = constantVal *(a + b)
+  y = a - b
+  z = a * b
+  return x, y, z
+ 
+ #main program
+add, subtract, multiply = calc(5,3)
+print (add, subtract, multiply)
