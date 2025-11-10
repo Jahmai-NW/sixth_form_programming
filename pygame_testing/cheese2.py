@@ -1,4 +1,4 @@
-# Example file showing a circle moving on screen
+    #Example file showing a circle moving on screen
 import pygame
 
 # pygame setup
