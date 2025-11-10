@@ -1,0 +1,52 @@
+    #Example file showing a circle moving on screen
+import pygame
+
+# pygame setup
+pygame.init()
+DISPLAYSURF = pygame.display.set_mode((500, 400), 0, 32)
+pygame.display.set_caption('Drawing')
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+running = True
+dt = 0
+
+player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+
+
+BLACK = ( 0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = ( 0, 255, 0)
+BLUE = ( 0, 0, 255)
+
+while running:
+    # poll for events
+    # pygame.QUIT event means the user clicked X to close your window
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # fill the screen with a color to wipe away anything from last frame
+    screen.fill("white")
+    pygame.draw.rect(DISPLAYSURF, RED, (200, 150, 100, 50))
+    
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        player_pos.y -= 200 * dt
+    if keys[pygame.K_s]:
+        player_pos.y += 200 * dt
+    if keys[pygame.K_a]:
+        player_pos.x -= 200 * dt
+    if keys[pygame.K_d]:
+        player_pos.x += 200 * dt
+
+    # flip() the display to put your work on screen
+    pygame.display.flip()
+
+    # limits FPS to 60
+    # dt is delta time in seconds since last frame, used for framerate-
+    # independent physics.
+    dt = clock.tick(60) / 1000
+
+pygame.quit()
