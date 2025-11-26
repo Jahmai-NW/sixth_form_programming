@@ -1,13 +1,13 @@
 def getPword(attempt):
     if attempt == 1:
-        ask = "Enter password: "
+        ask = input("Enter password: ")
     else:
-        ask = "Enter password again: "
+        ask = input("Enter password again: ")
 
-    password = input(ask)
+    password = ask
 
     while len(password) < 6 or len(password) > 8:
-        print("Error. password must be 6 to 8 characters long")
+        print("Error - password must be 6 to 8 characters long")
         if attempt == 1:
             password = input("Enter password: ")
         else:
