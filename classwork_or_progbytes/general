@@ -1,0 +1,6 @@
+def evenNumberSum(n):
+    if n > 0:
+        n = n + evenNumberSum(n-2)
+    return n
+
+print(evenNumberSum(10))
