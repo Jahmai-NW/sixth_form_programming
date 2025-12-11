@@ -1,6 +1,30 @@
-def evenNumberSum(n):
-    if n > 0:
-        n = n + evenNumberSum(n-2)
-    return n
+import time
 
-print(evenNumberSum(10))
+
+def fib(n):
+    if n <= 1:
+        return n
+    else:
+        return fib(n-1) + fib(n-2)
+    
+    
+
+def fibonacci2(n):
+    fibNumbers = [0,1]
+    for i in range(2,n+1):
+        fibNumbers.append(fibNumbers[i-1] + fibNumbers[i-2])
+    return fibNumbers[n]
+
+
+startTime1 = time.time()
+fib(2)
+endTime1 = time.time()
+totalTime1 = endTime1 - startTime1
+print("The time taken for the recursive function is:", totalTime1)
+
+
+startTime2 = time.time()
+fibonacci2(2)
+endTime2 = time.time()
+totalTime2 = endTime2 - startTime2
+print("The time taken for the iterative function is:", totalTime2)
