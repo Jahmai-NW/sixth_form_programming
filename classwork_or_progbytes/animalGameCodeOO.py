@@ -56,10 +56,12 @@ class Animal():
         return self.name
     
     ''' These need thinking about'''
-    def upgrade(player):
-        return None
+    def upgrade(self, currentlevel):
+        currentlevel = currentlevel.getCurrentlevel()
+        return currentlevel + 1
 
-     # LOs need to be checked against player 
+
+    # LOs need to be checked against player 
     def getAmountToCharge(self):
         return None
     
@@ -204,7 +206,7 @@ headPointer = 0
 ####################################################################################
 # functions to allow the game to be played
 ####################################################################################
-
+headPointer = 0
 def pickDeck(currentPlayer):
     
     print(deck[headPointer].getTextToDisplay())
@@ -214,12 +216,6 @@ def pickDeck(currentPlayer):
     
     if headPointer == len(deck):
         headPointer = 0
-
-
-position = Animal.getBoard()
-board = 12
-board = position
-print(Animal)
 
 
 def playerMove(currentPlayer):
@@ -296,7 +292,7 @@ def menu_choice(choice):
 
         case "4":
             print("Rolling...")
-            playerMove()
+            playerMove(currentPlayer)
 
         case "5":
             print("Ending turn")
@@ -312,14 +308,14 @@ def menu_choice(choice):
     return True
 
 
-# Main menu loop
 
-position = Animal.getBoard()
+#trialing stuff
+position = Player.getPosition()
 board = 12
 board = position
 print(Animal)
 
-
+# Main menu loop
 running = True
 while running:
     show_menu()
