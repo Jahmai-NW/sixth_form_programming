@@ -221,7 +221,7 @@ def pickDeck(currentPlayer):
 def playerMove(currentPlayer):
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    position = currentPlayer.getPosition()
+    position = currentPlayer.getPosition(self=Player())
     newPosition = position + dice1 + dice2
     if dice1 == dice2:
         pickDeck(currentPlayer)
@@ -292,7 +292,7 @@ def menu_choice(choice):
 
         case "4":
             print("Rolling...")
-            playerMove(currentPlayer)
+            playerMove(Player)
 
         case "5":
             print("Ending turn")
@@ -310,10 +310,11 @@ def menu_choice(choice):
 
 
 #trialing stuff
-position = Player.getPosition()
-board = 12
-board = position
-print(Animal)
+# self = Player
+# print(Player.getPosition(self))
+# board = 12
+# board = position
+# print(Animal)
 
 # Main menu loop
 running = True
