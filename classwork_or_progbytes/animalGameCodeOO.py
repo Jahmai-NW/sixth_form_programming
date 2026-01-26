@@ -8,7 +8,7 @@
 '''
 
 class Player():
-    def __init__(self, thePlayerID):
+    def __init__(self, thePlayerID, the):
         self.playerID = thePlayerID
         self.boardPosition = 0
         self.money = 2000
@@ -133,11 +133,7 @@ def viewAllAnimals(theBoard):
     for i in range(len(theBoard)): 
         print(str(i) + ": " + theBoard[i].getName())
 
-#move player
-#def currentPlayerMoving(boardPosition):
-    #boardPosition = boardPosition.getPosition()
-    #newPosition = boardPosition + dice1 + dice2
-    #newPosition.setPosition
+
 
 # setup up to 4 players (this might need adapting if the game doesn't always have 4 players)
 
@@ -206,7 +202,6 @@ headPointer = 0
 ####################################################################################
 # functions to allow the game to be played
 ####################################################################################
-headPointer = 0
 def pickDeck(currentPlayer):
     
     print(deck[headPointer].getTextToDisplay())
@@ -218,10 +213,16 @@ def pickDeck(currentPlayer):
         headPointer = 0
 
 
+def checkAnimal(currentPlayer):
+    i = currentPlayer.getPosition()
+    board[i].getAnimal()
+    
+
+
 def playerMove(currentPlayer):
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    position = currentPlayer.getPosition(self=Player())
+    position = currentPlayer.getPosition(self=Player)
     newPosition = position + dice1 + dice2
     if dice1 == dice2:
         pickDeck(currentPlayer)
