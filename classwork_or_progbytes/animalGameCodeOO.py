@@ -14,16 +14,17 @@ class Player():
         self.money = 2000
     
     def getPosition(self):
-        return self.getPosition
+        return self.position
     
     def setPosition(self, position):
-        self.boardPosition = position
+        self.position = position
 
     def getMoney(self):
         return self.money
     
     def setMoney(self, amount):
         self.money = amount
+
 
 class Animal():
     def __init__(self, theName, theCost, 
@@ -55,10 +56,9 @@ class Animal():
     def getName(self):
         return self.name
     
-    ''' These need thinking about'''
-    def upgrade(self, currentlevel):
-        currentlevel = currentlevel.getCurrentlevel()
-        return currentlevel + 1
+    def upgrade(self): 
+        if self.currentLevel < 3: 
+            self.currentLevel += 1
 
 
     # LOs need to be checked against player 
@@ -204,6 +204,7 @@ headPointer = 0
 # functions to allow the game to be played
 ####################################################################################
 def pickDeck(currentPlayer):
+    global headPointer
     
     print(deck[headPointer].getTextToDisplay())
     playersTotal = currentPlayer.getMoney() + deck[headPointer].getAmount()
@@ -216,47 +217,75 @@ def pickDeck(currentPlayer):
 
 def checkAnimal(currentPlayer):
     i = currentPlayer.getPosition()
-    if board[i].getOwned() == "free":
+    space = board[i]
+    if space.getOwned() == "free":
         print("Type Y or N")
-        ownershipQ = input("Would you like to buy", Animal[i].getName(), "for", Animal[i].getCost(), "?")
+        ownershipQ = input("Would you like to buy", space.getName(), "for", space.getCost(), "?").upper()
+        
         if ownershipQ == "Y":
             purchase(currentPlayer, Animal)
-        else:
-            return None
-    elif board[i].getOwned() == currentPlayer:
-        animalLevel = Animal[i].getCurrentLevel()
-        if animalLevel < 3:
+            return
+
+    if space.getOwned() == currentPlayer:
+        if space.getCurrentLevel() < 3:
             print("Type Y or N")
-            upgradingQ = input("Would you like to upgrade", Animal[i].getName(), "for", Animal[i].getCost(), "?")
+            upgradingQ = input("Would you like to upgrade", space.getName(), "for", space.getCost(), "?").upper()
             if upgradingQ == "Y":
-                Animal().upgrade(currentPlayer)
-    elif board[i].getOwned() != currentPlayer:
-        fine = Animal().getAmountToCharge()
+                space.upgrade(currentPlayer)
+            return
+        
+        fine = space.getAmountToCharge()
         chargeStay(currentPlayer, fine)
 
 
 
-        
+def purchase(currentPlayer, Animal):
+    balance = player.getMoney()
+    costOfBuying = animal.getCost()
+    if balance >= costOfBuying:
+        player.setMoney(balance - costOfBuying)
+        animal.setOwned(player)
+        print("You now own this animal!")
+    else: 
+        print("You do not have enough money to purchase this animal.")
+
+
+def chargeStay(player, fineAmount):
+    balance = player.getMoney()
+    costOfFine = animal.getAmountToCharge()
+    player.setMoney(balance - costOfFine)
+    owner = animal.getOwned()
+    owner.setMoney()
+    print("You paid a fine of", costOfFine)
+    
     
 
 
 def playerMove(currentPlayer):
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    position = currentPlayer.getPosition(self=Player) + dice1 + dice2
+
+    newPos = currentPlayer.getPosition() + dice1 + dice2
+
     if dice1 == dice2:
         pickDeck(currentPlayer)
 
-    if position > 25:
+    # Wrap around board
+    if newPos > 25:
+        newPos -= 26
         currentPlayer.setMoney(currentPlayer.getMoney() + 500)
-        position = position - 26
-        
-    if position == 13:
+        print("You passed START and collected 500!")
+
+    # Update the player's position
+    currentPlayer.setPosition(newPos)
+
+    # Special tile logic
+    if newPos == 13:
         missAGo(currentPlayer)
-    elif position != 0 or position != 13:
+    else:
         checkAnimal(currentPlayer)
 
-    newPosition.setPosition
+
     # complete this function based upon the exam question you completed, you may need to alter the function name and paramters. 
 
 # WHAT OTHER FUNCTIONS ARE NEEDED? 
