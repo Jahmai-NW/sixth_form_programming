@@ -8,13 +8,13 @@
 '''
 
 class Player():
-    def __init__(self, thePlayerID, the):
+    def __init__(self, thePlayerID):
         self.playerID = thePlayerID
-        self.boardPosition = 0
+        self.position = 0
         self.money = 2000
     
     def getPosition(self):
-        return self.boardPosition
+        return self.getPosition
     
     def setPosition(self, position):
         self.boardPosition = position
@@ -199,6 +199,7 @@ deck = [
 # this variable will point to the first item in queue of cards in the deck
 headPointer = 0
 
+
 ####################################################################################
 # functions to allow the game to be played
 ####################################################################################
@@ -215,15 +216,34 @@ def pickDeck(currentPlayer):
 
 def checkAnimal(currentPlayer):
     i = currentPlayer.getPosition()
-    board[i].getAnimal()
+    if board[i].getOwned() == "free":
+        print("Type Y or N")
+        ownershipQ = input("Would you like to buy", Animal[i].getName(), "for", Animal[i].getCost(), "?")
+        if ownershipQ == "Y":
+            purchase(currentPlayer, Animal)
+        else:
+            return None
+    elif board[i].getOwned() == currentPlayer:
+        animalLevel = Animal[i].getCurrentLevel()
+        if animalLevel < 3:
+            print("Type Y or N")
+            upgradingQ = input("Would you like to upgrade", Animal[i].getName(), "for", Animal[i].getCost(), "?")
+            if upgradingQ == "Y":
+                Animal().upgrade(currentPlayer)
+    elif board[i].getOwned() != currentPlayer:
+        fine = Animal().getAmountToCharge()
+        chargeStay(currentPlayer, fine)
+
+
+
+        
     
 
 
 def playerMove(currentPlayer):
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    position = currentPlayer.getPosition(self=Player)
-    newPosition = position + dice1 + dice2
+    position = currentPlayer.getPosition(self=Player) + dice1 + dice2
     if dice1 == dice2:
         pickDeck(currentPlayer)
 
