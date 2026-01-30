@@ -220,7 +220,7 @@ def purchase(player, animal):
 
 def chargeStay(player, animal):
     fine = animal.getAmountToCharge()
-    player.setMoney(player.getMoney - fine)
+    player.setMoney(player.getMoney() - fine)
 
     owner = animal.getOwned()
     owner.setMoney(owner.getMoney() + fine)
