@@ -20,10 +20,54 @@ class LinkedList():
         else:
             print(current.getData())
         
-            while current.getNext() != None:
-                current = current.getNext()
-                print(current.getData())
-        # start at the head/start pointer
+            while current != None:
+                print(current.getData()) # output the data
+                current = current.getNext()  # reset current to next item
+        # start at the head/start pointer 
+
+    def insert_at_front(self, data):
+
+        # Create a new node
+        new_node = Node(data)
+
+        # Check if the head node exists
+        if self.head is None:
+            self.head = new_node
+        else:
+            # Update the pointers so the new node is the head
+            new_node.set_next(self.head)            
+            self.head = new_node
+
+    
+    def insert_in_order(self, data):
+        """Insert a node into the correct position in an ordered list"""
+
+        # Create a new node
+        new_node = Node(data)
+
+        # Start at the head of the list
+        current = self.head
+        
+        # Check if there are no nodes in the list
+        if current == None:
+            self.head = new_node
+
+        # Check if the new node data is before the head data
+        elif new_node.get_data() < current.get_data():
+            # Set the new node as the head of the list
+            new_node.set_next(self.head)
+            self.head = new_node
+
+        # Otherwise find where the new node should be positioned
+        else:
+            # Repeat until the point of insertion is found
+            while (current.get_next() != None and current.get_next().get_data() < new_node.get_data()):
+                # Get the next node
+                current = current.get_next()
+
+            # Update the pointers of the new and current nodes
+            new_node.set_next(current.get_next())
+            current.set_next(new_node)
 
 
 
