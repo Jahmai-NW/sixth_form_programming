@@ -3,7 +3,7 @@ import pygame
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1500, 1000))
 clock = pygame.time.Clock()
 running = True
 dt = 0
@@ -24,13 +24,13 @@ while running:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        player_pos.y -= 200 * dt
+        player_pos.y -= 500 * dt
     if keys[pygame.K_s]:
-        player_pos.y += 200 * dt
+        player_pos.y += 500 * dt
     if keys[pygame.K_a]:
-        player_pos.x -= 200 * dt
+        player_pos.x -= 500 * dt
     if keys[pygame.K_d]:
-        player_pos.x += 200 * dt
+        player_pos.x += 500 * dt
 
     # flip() the display to put your work on screen
     pygame.display.flip()
