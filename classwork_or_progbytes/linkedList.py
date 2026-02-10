@@ -9,67 +9,66 @@ class LinkedList():
         return self.head
     
     def add(self, newData):
-        return None
-    
+
+        #start at the head of the list
+        current = self.head
+
+        #instantiate a new node
+        newNode = Node(newData)
+
+        #checking if the list is empty by seeing if current is equal to none
+        if current == None:
+            #if the list is empty, set the current/head of the list to the new node being instantiated
+            current = newNode
+
+        #checks if the current node's data has a greater value than the new node's data
+        elif newNode.getData() < current.getData():
+            #if so, the node after new node is now set to current,
+            newNode.setNext(current)
+            #the head of the list is now the new node
+            self.head = newNode
+
+        #checks if the new node's data has a greater value than the current node's data
+        elif newNode.getData() > current.getData():
+            #as long as the node after current is not equal to none
+            while current.getNext() != None:
+                #checks if the node after current's data has less value than the new node's data
+                if current.getNext().getData() < newNode.getData():
+                    #sets current to the node after the current node being looked at
+                    current = current.getNext()
+            
+            #sets the next node after new node to the node that WAS after current
+            newNode.setNext(current.getNext())
+            #sets the node after current to the new node
+            current.setNext(newNode)
+                    
+
+    def delete(self, newData):
+        current = self.head
+
+        if current == None:
+            print("This list is empty")
+        
+        elif current.getData() == newData.getData():
+            current.getNext() == newData.getNext()
+            newData.getNext = None
+
+
+
+        
     def traverseList(self):
         current = self.head
 
         # check if list is empty
         if current == None:
             print("List is empty")
-        else:
-            print(current.getData())
-        
+
             while current != None:
                 print(current.getData()) # output the data
-                current = current.getNext()  # reset current to next item
+                current = current.getNext()
+                
+                                                # reset current to next item
         # start at the head/start pointer 
-
-    def insert_at_front(self, data):
-
-        # Create a new node
-        new_node = Node(data)
-
-        # Check if the head node exists
-        if self.head is None:
-            self.head = new_node
-        else:
-            # Update the pointers so the new node is the head
-            new_node.set_next(self.head)            
-            self.head = new_node
-
-    
-    def insert_in_order(self, data):
-        """Insert a node into the correct position in an ordered list"""
-
-        # Create a new node
-        new_node = Node(data)
-
-        # Start at the head of the list
-        current = self.head
-        
-        # Check if there are no nodes in the list
-        if current == None:
-            self.head = new_node
-
-        # Check if the new node data is before the head data
-        elif new_node.get_data() < current.get_data():
-            # Set the new node as the head of the list
-            new_node.set_next(self.head)
-            self.head = new_node
-
-        # Otherwise find where the new node should be positioned
-        else:
-            # Repeat until the point of insertion is found
-            while (current.get_next() != None and current.get_next().get_data() < new_node.get_data()):
-                # Get the next node
-                current = current.get_next()
-
-            # Update the pointers of the new and current nodes
-            new_node.set_next(current.get_next())
-            current.set_next(new_node)
-
-
 
         # output item  
         # go to next pointer
@@ -98,18 +97,32 @@ class Node():
 #######################################
 
 # create a variable to hold the name of first person to put in list
-firstPerson = input("What is the first person in your list?: ")
+##firstPerson = input("What is the first person in your list?: ")
 
 # instantiated a linked list with first person setup
+#myList = LinkedList()
+
+
+
+#newNode = Node("Chris")
+#myList.add(firstPerson)
+
+#myList.traverseList()
+
+# while True:
+#     person = input("What is the first person in your list?: ")
+#     newNode = Node(person)
+#     myList.add(person)
+#     print(newNode.getData())
+
+#     print(newNode.getNext().getData())
+
+firstPerson = input("What is the first person in your list?: ")
 myList = LinkedList(firstPerson)
-
-
-
-newNode = Node("Chris")
-myList.getHead().setNext(newNode)
-
-myList.traverseList()
-
+myList.add("Baka")
+myList.add("Jerry")
+myList.add("Joseph")
+print(myList.traverseList())
 
 
 # print(myList)
