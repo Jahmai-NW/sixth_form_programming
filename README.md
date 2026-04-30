@@ -11,7 +11,7 @@ git push
 
 
 ## clone on a new machine
-git clone https://github.com/25Nandoh-WilliamsJ/sixth_form_programming
+git clone https://github.com/Jahmai-NW/sixth_form_programming
 
 ############################
 ## pull changes
