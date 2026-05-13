@@ -18,13 +18,15 @@
 
 
 class Sorcerers():
-    def __init__(self, theName, theHP, theAttack, theSpecialMove, theRankName):
+    def __init__(self, theName, theHP, theAttack, theSpecialMove, theRankName, theDomainExpansionName):
         self.name = theName
         self.hp = theHP
         self.attack = theAttack
         self.specialMove = theSpecialMove
         self.rct = False
+        self.domainExpansionName = theDomainExpansionName
         self.domainExpansion = False
+        self.simpleDomain = False
         self.rankName = theRankName
         self.rankPoints = 0
 
@@ -34,8 +36,17 @@ class Sorcerers():
     def setRCT(self):
         self.rct = True
 
+    def getTheDomainExpansionName(self):
+        return self.domainExpansionName
+
+    def setTheDomainExpansionName(self, newDomainExpansionName):
+        self.domainExpansionName = newDomainExpansionName
+
     def setDomainExpansion(self):
         self.domainExpansion = True
+
+    def setSimpleDomain(self):
+        self.simpleDomain = True
 
     def getAttack(self):
         return self.attack
@@ -61,12 +72,13 @@ class Sorcerers():
     
 
 class CursedSpirit():
-    def __init__(self, theName, theHP, theAttack, theSpecialMove, theRankName):
+    def __init__(self, theName, theHP, theAttack, theSpecialMove, theRankName, theDomainExpansionName):
         self.name = theName
         self.hp = theHP
         self.attack = theAttack
         self.specialMove = theSpecialMove
         self.rct = False
+        self.domainExpansionName = theDomainExpansionName
         self.domainExpansion = False
         self.rankName = theRankName
         self.rankPoints = 0
@@ -77,6 +89,12 @@ class CursedSpirit():
     def setRCT(self):
         self.rct = True
 
+    def getTheDomainExpansionName(self):
+        return self.domainExpansionName
+
+    def setTheDomainExpansionName(self, newDomainExpansionName):
+        self.domainExpansionName = newDomainExpansionName
+        
     def setDomainExpansion(self):
         self.domainExpansion = True
 
@@ -108,19 +126,33 @@ class CursedSpirit():
 #min attack = 1
 
 
-YujiItadori = Sorcerers("Yuji Itadori", 3000, 1000, "Black Flash", "Special Grade")
-YutaOkkotsu = Sorcerers("Yuta Okkotsu", 8000, 8000, "Summon Rika", "Special Grade")
-SatoruGojo = Sorcereres("Satoru Gojo", 9500, 9500, "200% Hollow Purple", "Special Grade")
-RyomenSukuna = Sorcerers("Ryomen Sukuna", 10000, 10000, "World Cutting Slash", "Special Grade")
-YukiTsukumo = Sorcerers("Yuki Tsukumo", 7000, 7000, "Black Hole", "Special Grade")
-SuguruGeto = Sorcerers("Suguru Geto", 1500, 1000, "Uzumaki", "Special Grade")
-Kenjaku = Sorcerers("Kenjaku", 1500, 6000, "Anti-Gravity", "Special Grade")
-MakiZenin = Sorcerers("Maki Zenin", 2500, 500, "Inhumane Speed", "Heavenly Restricted")
-MegumiFushiguro = Sorcerers("Megumi Fushiguro", 1000, 9000, "Summon Mahoraga", "Grade 2")
+YujiItadori = Sorcerers("Yuji Itadori", 3000, 1000, "Black Flash", "Special Grade", "Benevolent Shrine")
+YutaOkkotsu = Sorcerers("Yuta Okkotsu", 8000, 8000, "Summon Rika", "Special Grade", "Authentic Mutual Love")
+SatoruGojo = Sorcerers("Satoru Gojo", 9500, 9500, "200% Hollow Purple", "Special Grade", "Infinite Void")
+RyomenSukuna = Sorcerers("Ryomen Sukuna", 10000, 10000, "World Cutting Slash", "Special Grade", "Malevolent Shrine")
+YukiTsukumo = Sorcerers("Yuki Tsukumo", 7000, 7000, "Black Hole", "Special Grade", "Star Rage")
+SuguruGeto = Sorcerers("Suguru Geto", 1500, 1000, "Uzumaki", "Special Grade", "Womb Profusion")
+Kenjaku = Sorcerers("Kenjaku", 1500, 6000, "Anti-Gravity", "Special Grade", "Womb Profusion")
+MakiZenin = Sorcerers("Maki Zenin", 2500, 500, "Inhumane Speed", "Heavenly Restricted", None)
+MegumiFushiguro = Sorcerers("Megumi Fushiguro", 1000, 9000, "Summon Mahoraga", "Grade 2", "Chimera Shadow Garden")
+TojiFushiguro = Sorcerers("Toji Fushiguro", 2250, 700, "Sneak Attack", "Heavenly Restricted", None)
+NaoyaZenin = Sorcerers("Naoya Zenin", 700, 500, "Enforce 24FPS", "Special Grade 1", None)
+KinjiHakari = Sorcerers("Kinji Hakari", 6500, 3000, "Instantaneous Regeneration", "Grade 1", "Idle Death Gamble")
+HajimeKashimo = Sorcerers("Hajime Kashimo", 7800, 7800, "Mythical Beast Amber", "Special Grade", None)
 
-Mahito = CursedSpirit("Mahito", 6000, 4000, "Embodiment of Perfection", "Special Grade")
-Jogo = CursedSpirit("Jogo", 1500, 2000, "Maximum Meteor", "Special Grade")
-Dagon = 
+
+Mahito = CursedSpirit("Mahito", 6000, 4000, "Embodiment of Perfection", "Special Grade", "Self-Embodiment Of Perfection")
+Jogo = CursedSpirit("Jogo", 1500, 3000, "Maximum Meteor", "Special Grade", "Coffin of the Iron Mountain")
+Dagon = CursedSpirit("Dagon", 1000, 1500, "Awakening Form", "Special Grade", "Horizon of the Captivating Skandha")
+Choso = CursedSpirit("Choso", 2000, 2000, "Supernova", "Grade 1", None)
+Naoya = CursedSpirit("Cursed Spirit Naoya", 4000, 4000, "Apply 24FPS on Air", "Special Grade", "Time Cell Moon Palace")
+
+TotalSorcerers  = [YujiItadori]
+
+################################# GAMEPLAY FUNCTIONS
+
+def fighting():
+    e
 
 
 
