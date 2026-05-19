@@ -69,9 +69,6 @@ class Sorcerers():
     def setRankPoints(self, amount):
         self.rankPoints = amount
 
-    def getSpecialMove(self):
-        return self.specialMove
-
     
 
 class CursedSpirit():
@@ -178,8 +175,3 @@ def fightingAnnounce():
 
 
 fightingAnnounce()
-    
-
-
-
-    
