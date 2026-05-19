@@ -22,5 +22,9 @@ def push(item):
     theStack[topPointer] = item
     topPointer = topPointer + 1
 
+def pop():
+    global topPointer
+    return theStack[topPointer]
+
 push("yessir")
 print(theStack)

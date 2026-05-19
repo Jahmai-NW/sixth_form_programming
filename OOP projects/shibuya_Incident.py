@@ -69,6 +69,9 @@ class Sorcerers():
     def setRankPoints(self, amount):
         self.rankPoints = amount
 
+    def getSpecialMove(self):
+        return self.specialMove
+
     
 
 class CursedSpirit():
@@ -147,12 +150,35 @@ Dagon = CursedSpirit("Dagon", 1000, 1500, "Awakening Form", "Special Grade", "Ho
 Choso = CursedSpirit("Choso", 2000, 2000, "Supernova", "Grade 1", None)
 Naoya = CursedSpirit("Cursed Spirit Naoya", 4000, 4000, "Apply 24FPS on Air", "Special Grade", "Time Cell Moon Palace")
 
-TotalSorcerers  = [YujiItadori]
+TotalSorcerers = [YujiItadori, YutaOkkotsu, SatoruGojo, RyomenSukuna, YukiTsukumo, SuguruGeto, Kenjaku, MakiZenin, MegumiFushiguro, TojiFushiguro, NaoyaZenin, KinjiHakari, HajimeKashimo]
+TotalSpirits = [Mahito, Jogo, Dagon, Choso, Naoya]
 
 ################################# GAMEPLAY FUNCTIONS
+def moreAttack(fighter1, fighter2):
+    if fighter1.getAttack() > fighter2.getAttack():
+        print(fighter1.getName(), "won by using their base moves.")
+    elif fighter1.getAttack() < fighter2.getAttack():
+        print(fighter2.getName(), "won by using their base moves.")
+    elif fighter1.getAttack() == fighter2.getAttack():
+        print(fighter1.getName(), "and", fighter2.getName(), "are in a stalemate...")
+    elif fighter1.getAttack() > (2*int(fighter2.getAttack())):
+        print(fighter1.getName(), "won by using", fighter1.getSpecialMove())
+    elif (2*int(fighter1.getAttack())) < fighter2.getAttack():
+        print(fighter2.getName(), "won by using", fighter2.getSpecialMove())
 
-def fighting():
-    e
+
+
+def fightingAnnounce():
+    from random import choice
+    fighter1 = choice(TotalSorcerers)
+    fighter2 = choice(TotalSorcerers)
+    if fighter1.getName() != fighter2.getName():
+        print(fighter1.getName(), "vs", fighter2.getName())
+        moreAttack(fighter1, fighter2)
+
+
+fightingAnnounce()
+    
 
 
 
