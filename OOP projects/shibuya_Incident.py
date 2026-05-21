@@ -175,15 +175,15 @@ class CursedSpirit():
 #max specialvalue = 5000
 #min domainvalue = 1
 
-YujiItadori = Sorcerers("Yuji Itadori", 3000, 1000, "Black Flash", 3500, "Special Grade", "Benevolent Shrine", 200, "gets hit by soul dismantles.")
+YujiItadori = Sorcerers("Yuji Itadori", 3000, 2000, "Black Flash", 3500, "Special Grade", "Benevolent Shrine", 200, "gets hit by soul dismantles.")
 YutaOkkotsu = Sorcerers("Yuta Okkotsu", 8000, 8000, "Rika", 4000, "Special Grade", "Authentic Mutual Love", 400, "is hit by a technique from Yuta's sword.")
 SatoruGojo = Sorcerers("Satoru Gojo", 9500, 9500, "200% Hollow Purple", 5500, "Special Grade", "Infinite Void", 480, "is forced to bear the weight of boundless information.")
-RyomenSukuna = Sorcerers("Ryomen Sukuna", 10000, 10000, "World Cutting Slash", 5500, "Special Grade", "Malevolent Shrine", 500, "is hit by endless dismantle and cleave attacks.")
+RyomenSukuna = Sorcerers("Ryomen Sukuna", 10000, 10000, "World Cutting Slash", 5500, "Special Grade", "Malevolent Shrine", 500, "is sliced and diced by endless dismantle and cleave attacks.")
 YukiTsukumo = Sorcerers("Yuki Tsukumo", 7000, 7000, "Black Hole", 5000, "Special Grade", "Star Rage", 420, "is hit by the effects of infinite mass.")
 SuguruGeto = Sorcerers("Suguru Geto", 1500, 1000, "Maximum Uzumaki", 2000, "Special Grade", "Womb Profusion", 20, "is hit by the onslaught of Cursed Spirits.")
 Kenjaku = Sorcerers("Kenjaku", 1500, 6000, "Anti-Gravity", 3800, "Special Grade", "Womb Profusion", 490, "is immediately crushed.")
 MakiZenin = Sorcerers("Maki Zenin", 2500, 500, "Inhumane Speed", 3400, "Heavenly Restricted", None, 0, "invades the domain.")
-MegumiFushiguro = Sorcerers("Megumi Fushiguro", 1000, 9000, "Mahoraga", 5000, "Grade 2", "Chimera Shadow Garden", 250, "is attacked by multiple shadows.")
+MegumiFushiguro = Sorcerers("Megumi Fushiguro", 1000, 2000, "Mahoraga", 5000, "Grade 2", "Chimera Shadow Garden", 250, "is attacked by multiple shadows.")
 TojiFushiguro = Sorcerers("Toji Fushiguro", 2250, 700, "Sneak Attack", 3450, "Heavenly Restricted", None, 0, "invades the domain.")
 NaoyaZenin = Sorcerers("Naoya Zenin", 700, 500, "24FPS Frame", 3950, "Special Grade 1", None, 0, "is safe.")
 KinjiHakari = Sorcerers("Kinji Hakari", 6500, 3000, "Instantaneous Regeneration", 4100, "Grade 1", "Idle Death Gamble", 390, "is severely injured by Jackpot Hakari.")
