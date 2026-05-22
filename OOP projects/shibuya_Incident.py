@@ -290,6 +290,38 @@ def deathmatchSor():
             print(fighter1.getName(), "and", fighter2.getName(), "are in a stalemate...")
 
 
+def deathmatchCur():
+    from random import choice
+    fighter1 = choice(TotalSpirits)
+    fighter2 = choice(TotalSpirits)
+    if fighter1.getName() != fighter2.getName():
+        print("")
+        print(fighter1.getName(), "vs", fighter2.getName())
+        print("They both waste no time and using their strongest moves to avoid death.")
+        print("")
+        if fighter1.getSpecialMoveValue() > fighter2.getSpecialMoveValue():
+            print(fighter1.getName(), "won by using", fighter1.getSpecialMove())
+        elif fighter1.getSpecialMoveValue() < fighter2.getSpecialMoveValue():
+            print(fighter2.getName(), "won by using", fighter2.getSpecialMove())
+        elif fighter1.getSpecialMoveValue() == fighter2.getSpecialMoveValue():
+            print(fighter1.getName(), "and", fighter2.getName(), "are in a stalemate...")
+
+
+def deathmatchBoth():
+    from random import choice
+    fighter1 = choice(TotalSorcerers)
+    fighter2 = choice(TotalSpirits)
+    if fighter1.getName() != fighter2.getName():
+        print("")
+        print(fighter1.getName(), "vs", fighter2.getName())
+        print("They both waste no time and using their strongest moves to avoid death.")
+        print("")
+        if fighter1.getSpecialMoveValue() > fighter2.getSpecialMoveValue():
+            print(fighter1.getName(), "won by using", fighter1.getSpecialMove())
+        elif fighter1.getSpecialMoveValue() < fighter2.getSpecialMoveValue():
+            print(fighter2.getName(), "won by using", fighter2.getSpecialMove())
+        elif fighter1.getSpecialMoveValue() == fighter2.getSpecialMoveValue():
+            print(fighter1.getName(), "and", fighter2.getName(), "are in a stalemate...")
 
 
 
@@ -304,9 +336,10 @@ def deathmatchSor():
 ###############################################################################################################################################################
 
 
-
-while True:
+running = True
+while running:
     print('''
+            type -1 to quit.
         1. Practice Duel: Sorcerer vs Sorcerer
         2. Practice Duel: Cursed Spirit vs Cursed Spirit
         3. Practice Duel: Sorcerer vs Cursed Spirit
@@ -314,6 +347,7 @@ while True:
         5. Deathmatch: Cursed Spirit vs Cursed Spirit
         6. Deathmatch: Sorcerer vs Cursed Spirit
         7. Domain Clash between Sorcerers and Cursed Spirits
+          
     ''')
 
     option = int(input("Please enter your choice: "))
@@ -330,15 +364,14 @@ while True:
     if option == 4:
         deathmatchSor()
 
+    if option == 5:
+        deathmatchCur()
 
-
-
-
-
-
-
-
-
+    if option == 6:
+        deathmatchBoth()
 
     if option == 7:
         domainClash()
+
+    if option == -1:
+        running = False
