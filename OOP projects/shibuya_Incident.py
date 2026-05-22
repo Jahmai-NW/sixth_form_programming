@@ -324,7 +324,11 @@ def deathmatchBoth():
             print(fighter1.getName(), "and", fighter2.getName(), "are in a stalemate...")
 
 
-
+def informationDisSor():
+    for i in range(len(TotalSorcerers)):
+        print(TotalSorcerers[i].name)
+        print("HP:", TotalSorcerers[i].hp)
+        print("ATT:", TotalSorcerers[i].attack)
 
 
 
@@ -347,6 +351,8 @@ while running:
         5. Deathmatch: Cursed Spirit vs Cursed Spirit
         6. Deathmatch: Sorcerer vs Cursed Spirit
         7. Domain Clash between Sorcerers and Cursed Spirits
+        8. Display Information on Sorcerers
+        9. Display Information on Cursed Spirits
           
     ''')
 
@@ -372,6 +378,9 @@ while running:
 
     if option == 7:
         domainClash()
+
+    if option == 8:
+        informationDisSor()
 
     if option == -1:
         running = False
