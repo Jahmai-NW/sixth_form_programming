@@ -330,6 +330,12 @@ def informationDisSor():
         print("HP:", TotalSorcerers[i].hp)
         print("ATT:", TotalSorcerers[i].attack)
 
+def informationDisCur():
+    for i in range(len(TotalSpirits)):
+        print(TotalSpirits[i].name)
+        print("HP:", TotalSpirits[i].hp)
+        print("ATT:", TotalSpirits[i].attack)
+
 
 
 
@@ -381,6 +387,9 @@ while running:
 
     if option == 8:
         informationDisSor()
+
+    if option == 9:
+        informationDisCur()
 
     if option == -1:
         running = False
