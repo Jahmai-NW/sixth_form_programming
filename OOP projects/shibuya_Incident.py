@@ -188,6 +188,9 @@ TojiFushiguro = Sorcerers("Toji Fushiguro", 2250, 700, "Sneak Attack", 3450, "He
 NaoyaZenin = Sorcerers("Naoya Zenin", 700, 500, "24FPS Frame", 3950, "Special Grade 1", None, 0, "is safe.")
 KinjiHakari = Sorcerers("Kinji Hakari", 6500, 3000, "Instantaneous Regeneration", 4100, "Grade 1", "Idle Death Gamble", 390, "is severely injured by Jackpot Hakari.")
 HajimeKashimo = Sorcerers("Hajime Kashimo", 7800, 7800, "Mythical Beast Amber", 5000, "Special Grade", None, 0, "is safe.")
+Dabura
+TsurugiOkkotsu
+
 
 
 Mahito = CursedSpirit("Mahito", 6000, 4000, "Embodiment of Perfection", 4500, "Special Grade", "Self-Embodiment Of Perfection", 450, "is forcefully morphed, as a result of Idle Transfiguration.")
@@ -327,14 +330,14 @@ def deathmatchBoth():
 def informationDisSor():
     for i in range(len(TotalSorcerers)):
         print(TotalSorcerers[i].name)
-        print("HP:", TotalSorcerers[i].hp)
-        print("ATT:", TotalSorcerers[i].attack)
+        print(" - HP:", TotalSorcerers[i].hp)
+        print(" - ATT:", TotalSorcerers[i].attack)
 
 def informationDisCur():
     for i in range(len(TotalSpirits)):
         print(TotalSpirits[i].name)
-        print("HP:", TotalSpirits[i].hp)
-        print("ATT:", TotalSpirits[i].attack)
+        print(" - HP:", TotalSpirits[i].hp)
+        print(" - ATT:", TotalSpirits[i].attack)
 
 
 
