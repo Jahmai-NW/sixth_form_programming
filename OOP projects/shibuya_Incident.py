@@ -177,7 +177,7 @@ class CursedSpirit():
 
 YujiItadori = Sorcerers("Yuji Itadori", 3000, 2000, "Black Flash", 3500, "Special Grade", "Benevolent Shrine", 200, "gets hit by soul dismantles.")
 YutaOkkotsu = Sorcerers("Yuta Okkotsu", 8000, 8000, "Rika", 4000, "Special Grade", "Authentic Mutual Love", 400, "is hit by a technique from Yuta's sword.")
-SatoruGojo = Sorcerers("Satoru Gojo", 9500, 9500, "200% Hollow Purple", 5500, "Special Grade", "Infinite Void", 480, "is forced to bear the weight of boundless information.")
+SatoruGojo = Sorcerers("Satoru Gojo", 9500, 9500, "200% Hollow Nuke", 5500, "Special Grade", "Infinite Void", 480, "is forced to bear the weight of boundless information.")
 RyomenSukuna = Sorcerers("Ryomen Sukuna", 10000, 10000, "World Cutting Slash", 5500, "Special Grade", "Malevolent Shrine", 500, "is sliced and diced by endless dismantle and cleave attacks.")
 YukiTsukumo = Sorcerers("Yuki Tsukumo", 7000, 7000, "Black Hole", 5000, "Special Grade", "Star Rage", 420, "is hit by the effects of infinite mass.")
 SuguruGeto = Sorcerers("Suguru Geto", 1500, 1000, "Maximum Uzumaki", 2000, "Special Grade", "Womb Profusion", 20, "is hit by the onslaught of Cursed Spirits.")
@@ -188,8 +188,11 @@ TojiFushiguro = Sorcerers("Toji Fushiguro", 2250, 700, "Sneak Attack", 3450, "He
 NaoyaZenin = Sorcerers("Naoya Zenin", 700, 500, "24FPS Frame", 3950, "Special Grade 1", None, 0, "is safe.")
 KinjiHakari = Sorcerers("Kinji Hakari", 6500, 3000, "Instantaneous Regeneration", 4100, "Grade 1", "Idle Death Gamble", 390, "is severely injured by Jackpot Hakari.")
 HajimeKashimo = Sorcerers("Hajime Kashimo", 7800, 7800, "Mythical Beast Amber", 5000, "Special Grade", None, 0, "is safe.")
-Dabura
-TsurugiOkkotsu
+DaburaKaraba = Sorcerers("Dabura Karaba", 9500, 9500, "Killing Intent", 5000, "Special Grade", "Otherworld Between Darkness and Light: Reverse Transcendence", 500, "is hit by effects which cannot be comprehended by the human mind.")
+TsurugiOkkotsu = Sorcerers("Tsurugi Okkotsu", 1000, 500, "Rika Possession", 4500, "Heavenly Restricted", None, 0, "is safe.")
+YukaOkkotsu = Sorcerers("Yuka Okkotsu", 1000, 700, "Death Binding Vow: Mahoraga", 5000, "Grade 2", "Chimera Shadow Garden", 100, "is attacked by multiple shadows.")
+Maru = Sorcerers("Maru", 1500, 9000, "Environment Flip", 4000, "Grade 1", None, 0, "is safe.")
+Cross = Sorcerers("Cross", 1600, 9000, "Environment Flip", 4000, "Grade 1", None, 0, "is safe.")
 
 
 
@@ -199,7 +202,7 @@ Dagon = CursedSpirit("Dagon", 1000, 1500, "Awakening Form", 2700, "Special Grade
 Choso = CursedSpirit("Choso", 2000, 2000, "Supernova", 2500, "Grade 1", None, 0, "is safe.")
 Naoya = CursedSpirit("Cursed Spirit Naoya", 4000, 4000, "24FPS Frame on Air", 3950, "Special Grade", "Time Cell Moon Palace", 470, "fails to abide by Naoya's 24FPS rule. Their cells are shredded and torn apart.")
 
-TotalSorcerers = [YujiItadori, YutaOkkotsu, SatoruGojo, RyomenSukuna, YukiTsukumo, SuguruGeto, Kenjaku, MakiZenin, MegumiFushiguro, TojiFushiguro, NaoyaZenin, KinjiHakari, HajimeKashimo]
+TotalSorcerers = [YujiItadori, YutaOkkotsu, SatoruGojo, RyomenSukuna, YukiTsukumo, SuguruGeto, Kenjaku, MakiZenin, MegumiFushiguro, TojiFushiguro, NaoyaZenin, KinjiHakari, HajimeKashimo,YukaOkkotsu, TsurugiOkkotsu, DaburaKaraba, Maru, Cross]
 TotalSpirits = [Mahito, Jogo, Dagon, Choso, Naoya]
 
 ################################# GAMEPLAY FUNCTIONS #############################################################################################################
