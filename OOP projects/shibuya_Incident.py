@@ -342,8 +342,12 @@ def informationDisCur():
         print(" - HP:", TotalSpirits[i].hp)
         print(" - ATT:", TotalSpirits[i].attack)
 
-
-
+def interactiveGameTest():
+    print("Please enter the name of the character you want to play as: ")
+    informationDisSor()
+    informationDisCur()
+    print("")
+    charChoice = input("Enter here: ")
 
 
 
@@ -365,6 +369,7 @@ while running:
         7. Domain Clash between Sorcerers and Cursed Spirits
         8. Display Information on Sorcerers
         9. Display Information on Cursed Spirits
+        10. Interactive Gameplay 1
           
     ''')
 
@@ -397,5 +402,11 @@ while running:
     if option == 9:
         informationDisCur()
 
+    if option == 10: 
+        interactiveGameTest()
+
     if option == -1:
         running = False
+
+    else:
+        option = int(input("Sorry, that is an invalid choice. Please re-enter your choice: "))
