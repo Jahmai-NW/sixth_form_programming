@@ -6,3 +6,7 @@ myfile = open("quotes.txt", "r")
 x = myfile.readline()
 print(x)
 myfile.close()
+
+
+
+

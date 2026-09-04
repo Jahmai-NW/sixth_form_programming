@@ -1,10 +1,10 @@
 import pygame
 
-pygame.init()
-WIDTH, HEIGHT = 800, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Penalty Shootout")
-clock = pygame.time.Clock()
+# pygame.init()
+# WIDTH, HEIGHT = 800, 600
+# screen = pygame.display.set_mode((WIDTH, HEIGHT))
+# pygame.display.set_caption("Penalty Shootout")
+# clock = pygame.time.Clock()
 
 
 
@@ -12,14 +12,50 @@ clock = pygame.time.Clock()
 class Player():
     #private username
     #private HighScore
-None
+
+    def __init__(self, theUsername, theHighScore):
+        self.username = theUsername
+        self.highScore = theHighScore
+
+    def setUsername(self, username):
+        self.username = username
+
+    def getUsername(self):
+        return self.username
+
+    def setHighScore(self, highScore):
+        self.highScore = highScore
+
+    def getHighScore(self):
+        return self.highScore
+
+
+
+
+
 
 
 class PenaltyTaker():
     #private background
     #private totalScore
-    #private shotButton
     #private shotDirection
+
+    def __init__(self, theTotalScore, theShotDirection):
+        self.totalScore = theTotalScore
+        self.shotDirection = theShotDirection
+
+    def getTotalScore(self, totalScore):
+        self.totalScore = totalScore
+
+    def setTotalScore(self):
+        return self.totalScore
+
+    def setShotDirection(self, shotDirection):
+        self.shotDirection = theShotDirection
+
+    def getShotDirection(self):
+        return self.shotDirection
+
 
 class Goalkeeper():
     #private background
