@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init() #initiates pygame module
-screen = pygame.display.set_mode((800, 600)) #establishes the size of the screen to be displayed
+screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 
 pygame.display.set_caption("Penalty Shootout") #establishes the text to be displayed as the caption of the screen
 
@@ -28,7 +28,7 @@ while running: #as long as running is true
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
 
-    titlePanel.blit(titleMessage, titleRect)
+    # screen.blit(titleMessage, titleRect)
 
     # flip() the display to put your work on screen
     pygame.display.update()
@@ -39,9 +39,4 @@ while running: #as long as running is true
     dt = clock.tick(60) / 1000
 
 
-
-
-
 pygame.quit()
-quit()
-pygame.display.update()
