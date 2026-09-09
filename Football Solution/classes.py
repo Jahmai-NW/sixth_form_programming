@@ -40,7 +40,7 @@ class PenaltyTaker():
         return self.totalScore
 
     def setShotDirection(self, shotDirection):
-        self.shotDirection = theShotDirection
+        self.shotDirection = shotDirection
 
     def getShotDirection(self):
         return self.shotDirection
