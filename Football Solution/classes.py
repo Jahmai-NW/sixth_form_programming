@@ -70,7 +70,32 @@ class Button():
     #private y
     #private width
     #private height
-    None
+    #private colour
+    #private hoverColour
+
+    def __init__(self, x, y, width, height, text, colour, hover_colour):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.text = text 
+        self.colour = colour
+        self.hover_colour = hover_colour
+        self.font = pygame.font.Font(None, 36)
+
+    def draw(self, screen):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint(mouse_pos):
+            pygame.draw.rect(screen, self.hover_colour, self.rect)
+        else:
+            pygame.draw.rect(screen, self.colour, self.rect)
+
+        text_surf = self.font.render(self.text, True, (255, 255, 255))
+        screen.blit(text_surf, (self.rect.x + 10, self.rect.y + 10))
+
+    def is_clicked(self):
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_click = pygame.mouse.get_pressed()[0]
+        return self.rect.collidepoint(mouse_pos) and mouse_click
+
+    
 
 
 

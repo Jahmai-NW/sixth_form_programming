@@ -10,8 +10,6 @@ pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be
 clock = pygame.time.Clock() #creates a clock object which keeps track of time
 running = True #running set to true
 
-mouse = pygame.mouse.get_pos()  # stores the (x,y) coordinates into
-# the variable as a tuple
 
 
 titlePanel = pygame.Surface((200, 600)) #creates a new surface object with the specified size (200, 600) which can be used to draw on and display on the screen
@@ -31,7 +29,6 @@ font = pygame.font.Font('freesansbold.ttf', 32) #creates a font object with the 
 settingsMessage = font.render("Settings", True, (0, 255, 0), (255, 255, 255)) #creates a text message to be displayed on the screen, with the text "Settings", in green colour (0, 255, 0) with a background colour of blue (0, 0, 128)
 settingsRect = settingsMessage.get_rect() #this gets the rectangular area of the settings message
 settingsRect.center = (500, 500) #coordinates of the center of the settings message
-
 
 newGamePanel = pygame.Surface((400, 200)) #creates a new surface object with the specified size (400, 200) which can be used to draw on and display on the screen
 font = pygame.font.Font('freesansbold.ttf', 32) #creates a font object with the specified font file and size
@@ -55,6 +52,8 @@ def instructionsScreen():
 
 
 
+
+
 while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -66,6 +65,10 @@ while running: #as long as running is true
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill((18, 70, 45)) #fills the screen with a color (18, 70, 45) which is a shade of green (may be changed to a different color later)
+
+    mouse_pos = pygame.mouse.get_pos()  # stores the (x,y) coordinates into
+    # the variable as a tuple
+    mouse_click = pygame.mouse.get_pressed()[0]
 
     screen.blit(titleMessage, titleRect)
     screen.blit(mainMenuMessage, mainMenuRect)
