@@ -10,3 +10,6 @@ for i in range(1, len(cards)):
 
 
 print(cards)
+
+#https://isaaccomputerscience.org/concepts/dsa_search_insertion
+

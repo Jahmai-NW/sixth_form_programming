@@ -36,6 +36,8 @@ newGameMessage = font.render("New Game", True, (0, 255, 0), (255, 255, 255)) #cr
 newGameRect = newGameMessage.get_rect() #this gets the rectangular area of the settings message
 newGameRect.center = (500, 300) #coordinates of the center of the settings message
 
+import classes
+testButton = classes.ButtonCreation(500, 200, 400, 200, "Test Button", "Red", "Teal")
 
 ##########################
 
@@ -74,6 +76,7 @@ while running: #as long as running is true
     screen.blit(mainMenuMessage, mainMenuRect)
     screen.blit(settingsMessage, settingsRect)
     screen.blit(newGameMessage, newGameRect)
+    classes.draw(screen)
 
 
     # flip() the display to put your work on screen

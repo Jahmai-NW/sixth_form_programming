@@ -1,3 +1,6 @@
+import project
+import pygame
+
 class Player():
     #private username
     #private HighScore
@@ -17,8 +20,6 @@ class Player():
 
     def getHighScore(self):
         return self.highScore
-
-
 
 
 
@@ -64,7 +65,7 @@ class MainGame():
     None
 
 
-class Button():
+class ButtonCreation():
     #private text
     #private x
     #private y
