@@ -1,5 +1,6 @@
-import project
+# import project
 import pygame
+from project import *
 
 class Player():
     #private username
@@ -79,7 +80,7 @@ class ButtonCreation():
         self.text = text 
         self.colour = colour
         self.hover_colour = hover_colour
-        self.font = pygame.font.Font(None, 36)
+        self.font = pygame.font.Font('freesansbold.ttf', 36)
 
     def draw(self, screen):
         mouse_pos = pygame.mouse.get_pos()
@@ -98,7 +99,7 @@ class ButtonCreation():
 
     
 
-
+testbutton = ButtonCreation(500, 200, 400, 200, "Test Button", "Red", "Teal")
 
 
 class MainMenuPanel():
