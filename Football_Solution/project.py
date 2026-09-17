@@ -30,12 +30,12 @@ settingsMessage = font.render("Settings", True, (0, 255, 0), (255, 255, 255)) #c
 settingsRect = settingsMessage.get_rect() #this gets the rectangular area of the settings message
 settingsRect.center = (500, 500) #coordinates of the center of the settings message
 
-newGamePanel = pygame.Surface((400, 200)) #creates a new surface object with the specified size (400, 200) which can be used to draw on and display on the screen
-font = pygame.font.Font('freesansbold.ttf', 32) #creates a font object with the specified font file and size
-newGameMessage = font.render("New Game", True, (0, 255, 0), (255, 255, 255)) #creates a text message to be displayed on the screen, with the text "Settings", in green colour (0, 255, 0) with a background colour of blue (0, 0, 128)
-newGameRect = newGameMessage.get_rect() #this gets the rectangular area of the settings message
-newGameRect.center = (500, 300) #coordinates of the center of the settings message
+newGameButton = ButtonCreation(500, 300, 400, 200, "New Game", (0, 255, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
 
+
+
+testbutton = ButtonCreation(500, 200, 400, 200, "Test Button", (255, 0, 0),
+    (0, 128, 128))
 
 
 ##########################
@@ -62,6 +62,11 @@ while running: #as long as running is true
         if event.type == pygame.QUIT:
             running = False #running is changed to False, meaning this loop stops
 
+        if testbutton.is_clicked(event):
+            print("Button clicked!")
+
+        if newGameButton.is_clicked(event):
+            print("New Game button clicked!")
 
 
     # fill the screen with a color to wipe away anything from last frame
@@ -74,7 +79,7 @@ while running: #as long as running is true
     screen.blit(titleMessage, titleRect)
     screen.blit(mainMenuMessage, mainMenuRect)
     screen.blit(settingsMessage, settingsRect)
-    screen.blit(newGameMessage, newGameRect)
+    newGameButton.draw(screen)
     testbutton.draw(screen)
 
 

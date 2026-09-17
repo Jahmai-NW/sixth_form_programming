@@ -1,6 +1,5 @@
 # import project
 import pygame
-from project import *
 
 class Player():
     #private username
@@ -99,7 +98,6 @@ class ButtonCreation():
 
     
 
-testbutton = ButtonCreation(500, 200, 400, 200, "Test Button", "Red", "Teal")
 
 
 class MainMenuPanel():
