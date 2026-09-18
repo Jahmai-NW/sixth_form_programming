@@ -12,45 +12,50 @@ running = True #running set to true
 
 
 
-titlePanel = pygame.Surface((200, 600)) #creates a new surface object with the specified size (200, 600) which can be used to draw on and display on the screen
+titlePanel = pygame.Surface((300, 600)) #creates a new surface object with the specified size (200, 600) which can be used to draw on and display on the screen
 font = pygame.font.Font('freesansbold.ttf', 50) #creates a font object with the specified font file and size
 titleMessage = font.render("Final Penalty Shootout", True, 	(18, 70, 45), (255, 215, 60)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
 titleRect = titleMessage.get_rect() #this gets the rectangular area of the title message
-titleRect.center = (500, 50) #coordinates of the center of the title message
+titleRect.center = (500, 45) #coordinates of the center of the title message
 
-mainMenuPanel = pygame.Surface((400, 300)) #creates a new surface object with the specified size (400, 300) which can be used to draw on and display on the screen
-font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
-mainMenuMessage = font.render("Main Menu", True, (0, 255, 0), (255, 255, 255)) #creates a text message to be displayed on the screen, with the text "Main Menu", in green colour (0, 255, 0) with a background colour of blue (0, 0, 128)
+mainMenuPanel = pygame.Surface((500, 400)) #creates a new surface object with the specified size (400, 300) which can be used to draw on and display on the screen
+font = pygame.font.Font('freesansbold.ttf', 35) #creates a font object with the specified font file and size
+mainMenuMessage = font.render("Main Menu", True, (0, 255, 0), (10, 26, 47)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
 mainMenuRect = mainMenuMessage.get_rect() #this gets the rectangular area of the main menu message
-mainMenuRect.center = (500, 150) #coordinates of the center of the main menu message
-
-settingsPanel = pygame.Surface((400, 200)) #creates a new surface object with the specified size (400, 200) which can be used to draw on and display on the screen
-font = pygame.font.Font('freesansbold.ttf', 32) #creates a font object with the specified font file and size
-settingsMessage = font.render("Settings", True, (0, 255, 0), (255, 255, 255)) #creates a text message to be displayed on the screen, with the text "Settings", in green colour (0, 255, 0) with a background colour of blue (0, 0, 128)
-settingsRect = settingsMessage.get_rect() #this gets the rectangular area of the settings message
-settingsRect.center = (500, 500) #coordinates of the center of the settings message
-
-newGameButton = ButtonCreation(500, 300, 400, 200, "New Game", (0, 255, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
+mainMenuRect.center = (500, 110) #coordinates of the center of the main menu message
 
 
+newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
 
-testbutton = ButtonCreation(500, 200, 400, 200, "Test Button", (255, 0, 0),
-    (0, 128, 128))
+loadGameButton = ButtonCreation(400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128))
 
+customisationButton = ButtonCreation(400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128))
 
-##########################
+instructionsButton = ButtonCreation(400, 365, 200, 50, "  Instructions", (255, 195, 0), (0, 128, 128))
+
+viewScoresButton = ButtonCreation(400, 420, 200, 50, "  View Scores", (255, 195, 0), (0, 128, 128))
+
+settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0), (0, 128, 128))
+
+quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0))
+
+#############################################################################
 
 def settingsScreen():
     screen.fill((18, 70, 45))
 
 def customisationScreen():
-    screen.fill((18, 70, 45))
+    while True:
+
+        screen.fill((18, 70, 45))
+        pygame.display.update()
 
 def instructionsScreen():
     screen.fill((18, 70, 45))
+    pygame.display.update()
 
 
-
+################################################################################
 
 
 
@@ -62,28 +67,51 @@ while running: #as long as running is true
         if event.type == pygame.QUIT:
             running = False #running is changed to False, meaning this loop stops
 
-        if testbutton.is_clicked(event):
-            print("Button clicked!")
 
-        if newGameButton.is_clicked(event):
+        if newGameButton.is_clicked():
             print("New Game button clicked!")
 
+        if loadGameButton.is_clicked():
+            print("Loading Previous Slot....")
+
+        if customisationButton.is_clicked():
+            print("Choose a team!")
+            # customisationScreen()
+
+        if instructionsButton.is_clicked():
+            print("Instructions instructions...")
+            # instructionsScreen()
+
+        if viewScoresButton.is_clicked():
+            print("Change whatever you want!")
+            # viewScoresScreen()
+
+        if settingsButton.is_clicked():
+            print("Settings!")
+            # settingsScreen()
+
+        if quitButton.is_clicked():
+            running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill((18, 70, 45)) #fills the screen with a color (18, 70, 45) which is a shade of green (may be changed to a different color later)
-
+        screen.fill((199, 0, 57)) #fills the screen with a color
+    
     mouse_pos = pygame.mouse.get_pos()  # stores the (x,y) coordinates into
     # the variable as a tuple
     mouse_click = pygame.mouse.get_pressed()[0]
 
     screen.blit(titleMessage, titleRect)
     screen.blit(mainMenuMessage, mainMenuRect)
-    screen.blit(settingsMessage, settingsRect)
+
     newGameButton.draw(screen)
-    testbutton.draw(screen)
+    loadGameButton.draw(screen)
+    customisationButton.draw(screen)
+    instructionsButton.draw(screen)
+    viewScoresButton.draw(screen)
+    settingsButton.draw(screen)
+    quitButton.draw(screen)
 
 
-    # flip() the display to put your work on screen
     pygame.display.update()
 
     # limits FPS to 60
