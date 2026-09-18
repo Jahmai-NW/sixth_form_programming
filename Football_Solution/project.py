@@ -45,14 +45,24 @@ def settingsScreen():
     screen.fill((18, 70, 45))
 
 def customisationScreen():
-    while True:
-
+    running = True
+    while running:
         screen.fill((18, 70, 45))
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False #running is changed to False, meaning this loop stops
+    
         pygame.display.update()
 
 def instructionsScreen():
     screen.fill((18, 70, 45))
     pygame.display.update()
+
+def viewScoresScreen():
+    while True:
+
+        screen.fill((18))
 
 
 ################################################################################
