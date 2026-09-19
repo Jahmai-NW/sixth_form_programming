@@ -1,6 +1,6 @@
-import pygame
-import sys
-from classes import *
+import pygame #imports the pygame module
+import sys #imports the sys module
+from classes import * #imports all classes from the classes.py file
 
 pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
@@ -12,13 +12,13 @@ running = True #running set to true
 
 
 
-titlePanel = pygame.Surface((300, 600)) #creates a new surface object with the specified size (200, 600) which can be used to draw on and display on the screen
+titlePanel = pygame.Surface((500, 600)) #creates a new surface object with the specified size (500, 600) which can be used to draw on and display on the screen
 font = pygame.font.Font('freesansbold.ttf', 50) #creates a font object with the specified font file and size
 titleMessage = font.render("Final Penalty Shootout", True, 	(18, 70, 45), (255, 215, 60)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
 titleRect = titleMessage.get_rect() #this gets the rectangular area of the title message
 titleRect.center = (500, 45) #coordinates of the center of the title message
 
-mainMenuPanel = pygame.Surface((500, 400)) #creates a new surface object with the specified size (400, 300) which can be used to draw on and display on the screen
+mainMenuPanel = pygame.Surface((500, 400)) #creates a new surface object with the specified size (500, 400) which can be used to draw on and display on the screen
 font = pygame.font.Font('freesansbold.ttf', 35) #creates a font object with the specified font file and size
 mainMenuMessage = font.render("Main Menu", True, (0, 255, 0), (10, 26, 47)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
 mainMenuRect = mainMenuMessage.get_rect() #this gets the rectangular area of the main menu message
