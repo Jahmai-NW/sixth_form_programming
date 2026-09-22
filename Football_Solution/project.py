@@ -47,13 +47,17 @@ def settingsScreen():
 def customisationScreen():
     running = True
     while running:
-        screen.fill((18, 70, 45))
+        screen.fill((128, 128, 128))
+        pygame.display.update()
+        quitButton.draw(screen)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False #running is changed to False, meaning this loop stops
-    
-        pygame.display.update()
+
+            if quitButton.is_clicked():
+                None
+
 
 def instructionsScreen():
     screen.fill((18, 70, 45))
@@ -86,7 +90,7 @@ while running: #as long as running is true
 
         if customisationButton.is_clicked():
             print("Choose a team!")
-            # customisationScreen()
+            customisationScreen()
 
         if instructionsButton.is_clicked():
             print("Instructions instructions...")
