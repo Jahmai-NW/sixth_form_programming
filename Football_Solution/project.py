@@ -39,31 +39,9 @@ settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0
 
 quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0))
 
+backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
+
 #############################################################################
-
-def settingsScreen():
-    screen.fill((18, 70, 45))
-
-global runningCust
-runningCust = True
-def customisationScreen():
-    runningCust = True
-    while running:
-        
-        for event in pygame.event.get():
-
-
-            if event.type == pygame.QUIT:
-                runningCust = False #running is changed to False, meaning this loop stops
-
-            if quitButton.is_clicked():
-                runningCust = False
-
-            screen.fill((128, 128, 128))
-
-        quitButton.draw(screen)
-        pygame.display.update()
-
 
 
 def instructionsScreen():
@@ -79,40 +57,59 @@ def viewScoresScreen():
 ################################################################################
 
 
-
+running = True
+current_screen = "main_menu"
 
 while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False #running is changed to False, meaning this loop stops
 
+        if current_screen == "main_menu":
 
-        if newGameButton.is_clicked():
-            print("New Game button clicked!")
+            if event.type == pygame.QUIT:
+                running = False #running is changed to False, meaning this loop stops
 
-        if loadGameButton.is_clicked():
-            print("Loading Previous Slot....")
+            if newGameButton.is_clicked():
+                print("New Game button clicked!")
 
-        if customisationButton.is_clicked():
-            print("Choose a team!")
-            customisationScreen()
+            if loadGameButton.is_clicked():
+                print("Loading Previous Slot....")
 
-        if instructionsButton.is_clicked():
-            print("Instructions instructions...")
-            # instructionsScreen()
+            if customisationButton.is_clicked():
+                current_screen = "customisation"
 
-        if viewScoresButton.is_clicked():
-            print("Change whatever you want!")
-            # viewScoresScreen()
+            if instructionsButton.is_clicked():
+                print("Instructions instructions...")
+                # instructionsScreen()
 
-        if settingsButton.is_clicked():
-            print("Settings!")
-            # settingsScreen()
+            if viewScoresButton.is_clicked():
+                print("Change whatever you want!")
+                # viewScoresScreen()
 
-        if quitButton.is_clicked():
-            running = False
+            if settingsButton.is_clicked():
+                current_screen = "settings"
+
+            if quitButton.is_clicked():
+                running = False
+
+        elif current_screen == "customisation":
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
+
+        elif current_screen == "settings":
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
+
+        elif current_screen == "instructions":
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
+
+        elif current_screen == "view_scores":
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
+
+                
 
     # fill the screen with a color to wipe away anything from last frame
         screen.fill((199, 0, 57)) #fills the screen with a color
@@ -121,16 +118,39 @@ while running: #as long as running is true
     # the variable as a tuple
     mouse_click = pygame.mouse.get_pressed()[0]
 
-    screen.blit(titleMessage, titleRect)
-    screen.blit(mainMenuMessage, mainMenuRect)
 
-    newGameButton.draw(screen)
-    loadGameButton.draw(screen)
-    customisationButton.draw(screen)
-    instructionsButton.draw(screen)
-    viewScoresButton.draw(screen)
-    settingsButton.draw(screen)
-    quitButton.draw(screen)
+####### drawing, titles, symbols, buttons, etc
+    if current_screen == "main_menu":
+        screen.blit(titleMessage, titleRect)
+        screen.blit(mainMenuMessage, mainMenuRect)
+
+        newGameButton.draw(screen)
+        loadGameButton.draw(screen)
+        customisationButton.draw(screen)
+        instructionsButton.draw(screen)
+        viewScoresButton.draw(screen)
+        settingsButton.draw(screen)
+        quitButton.draw(screen)
+
+
+    elif current_screen == "customisation":
+
+        screen.fill((128, 128, 128))
+        backtoMainMenuButton.draw(screen)
+
+
+    elif current_screen == "settings":
+
+        screen.fill((18, 70, 45))
+        backtoMainMenuButton.draw(screen)
+
+
+    elif current_screen == "instructions":
+
+        screen.fill((18, 70, 45))
+        backtoMainMenuButton.draw(screen)
+
+
 
 
     pygame.display.update()
