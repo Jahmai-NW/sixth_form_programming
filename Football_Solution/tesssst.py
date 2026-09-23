@@ -1,3 +1,3 @@
 import pygame
 pygame.init()
-print("Pygame is working!")
+print(pygame.font.get_fonts())

@@ -12,17 +12,30 @@ running = True #running set to true
 
 
 
-titlePanel = pygame.Surface((500, 600)) #creates a new surface object with the specified size (500, 600) which can be used to draw on and display on the screen
-font = pygame.font.Font('freesansbold.ttf', 50) #creates a font object with the specified font file and size
+# titlePanel #####################
+font = pygame.font.Font('freesansbold.ttf', 70) #creates a font object with the specified font file and size
 titleMessage = font.render("Final Penalty Shootout", True, 	(18, 70, 45), (255, 215, 60)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
 titleRect = titleMessage.get_rect() #this gets the rectangular area of the title message
 titleRect.center = (500, 45) #coordinates of the center of the title message
 
-mainMenuPanel = pygame.Surface((500, 400)) #creates a new surface object with the specified size (500, 400) which can be used to draw on and display on the screen
-font = pygame.font.Font('freesansbold.ttf', 35) #creates a font object with the specified font file and size
+# mainMenuPanel ##################
+font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
 mainMenuMessage = font.render("Main Menu", True, (0, 255, 0), (10, 26, 47)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
 mainMenuRect = mainMenuMessage.get_rect() #this gets the rectangular area of the main menu message
 mainMenuRect.center = (500, 110) #coordinates of the center of the main menu message
+
+# creditsPanel ###################
+font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
+creditsTitle = font.render("Credits", True, (235, 235, 235), (255, 195, 0))
+creditsTitleRect = creditsTitle.get_rect()
+creditsTitleRect.center = (500, 45)
+
+font = pygame.font.Font('freesansbold.ttf', 20) #creates a font object with the specified font file and size
+creditsMessage1 = font.render("made by THE big J, Jahmai of course. big up Ms Lassami! ", True, (255, 255, 255), (120, 0, 35))
+credits1Rect = creditsMessage1.get_rect()
+credits1Rect.center = (500, 300)
+
+
 
 
 newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
@@ -41,24 +54,19 @@ quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162
 
 backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
 
-#############################################################################
+creditsButton = ButtonCreation(100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0))
 
 
-def instructionsScreen():
-    screen.fill((18, 70, 45))
-    pygame.display.update()
-
-def viewScoresScreen():
-    while True:
-
-        screen.fill((18))
 
 
-################################################################################
+#################################################################################################################
 
 
-running = True
-current_screen = "main_menu"
+
+
+
+running = True #running set to true
+current_screen = "main_menu" #current_screen variable to "main_menu" string
 
 while running: #as long as running is true
     # poll for events
@@ -67,11 +75,14 @@ while running: #as long as running is true
 
         if current_screen == "main_menu":
 
+            # fill the screen with a color to wipe away anything from last frame
+            screen.fill((199, 0, 57)) #fills the screen with a color
+
             if event.type == pygame.QUIT:
                 running = False #running is changed to False, meaning this loop stops
 
             if newGameButton.is_clicked():
-                print("New Game button clicked!")
+                current_screen = "create_new_game" #current_screen overwritten to "create_new_game" string
 
             if loadGameButton.is_clicked():
                 print("Loading Previous Slot....")
@@ -80,39 +91,52 @@ while running: #as long as running is true
                 current_screen = "customisation"
 
             if instructionsButton.is_clicked():
-                print("Instructions instructions...")
-                # instructionsScreen()
+                current_screen = "instructions"
 
             if viewScoresButton.is_clicked():
-                print("Change whatever you want!")
-                # viewScoresScreen()
+                current_screen = "view_scores"
 
             if settingsButton.is_clicked():
                 current_screen = "settings"
 
+            if creditsButton.is_clicked():
+                current_screen = "credits"
+
             if quitButton.is_clicked():
-                running = False
+                running = False #running set to False
+
+
+        elif current_screen == "create_new_game":
+            screen.fill((18, 70, 45))
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
 
         elif current_screen == "customisation":
+            screen.fill((128, 128, 128))
             if backtoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
 
         elif current_screen == "settings":
+            screen.fill((18, 70, 45))
             if backtoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
 
         elif current_screen == "instructions":
+            screen.fill((18, 70, 45))
             if backtoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
 
         elif current_screen == "view_scores":
+            screen.fill((18, 70, 45))
             if backtoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
 
-                
+        elif current_screen == "credits":
+            screen.fill((18, 18, 22))
+            if backtoMainMenuButton.is_clicked():
+                current_screen = "main_menu"
 
-    # fill the screen with a color to wipe away anything from last frame
-        screen.fill((199, 0, 57)) #fills the screen with a color
+
     
     mouse_pos = pygame.mouse.get_pos()  # stores the (x,y) coordinates into
     # the variable as a tuple
@@ -124,31 +148,47 @@ while running: #as long as running is true
         screen.blit(titleMessage, titleRect)
         screen.blit(mainMenuMessage, mainMenuRect)
 
-        newGameButton.draw(screen)
+        newGameButton.draw(screen) #draws buttons onto the screen
         loadGameButton.draw(screen)
         customisationButton.draw(screen)
         instructionsButton.draw(screen)
         viewScoresButton.draw(screen)
         settingsButton.draw(screen)
         quitButton.draw(screen)
+        creditsButton.draw(screen)
+
+
+    elif current_screen == "create_new_game":
+
+        backtoMainMenuButton.draw(screen)
 
 
     elif current_screen == "customisation":
 
-        screen.fill((128, 128, 128))
         backtoMainMenuButton.draw(screen)
 
 
     elif current_screen == "settings":
 
-        screen.fill((18, 70, 45))
         backtoMainMenuButton.draw(screen)
 
 
     elif current_screen == "instructions":
 
-        screen.fill((18, 70, 45))
         backtoMainMenuButton.draw(screen)
+
+
+    elif current_screen == "view_scores":
+
+        backtoMainMenuButton.draw(screen)
+
+
+    elif current_screen == "credits":
+
+        screen.blit(creditsTitle, creditsTitleRect)
+        screen.blit(creditsMessage1, credits1Rect)
+        backtoMainMenuButton.draw(screen)
+
 
 
 
