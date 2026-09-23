@@ -44,19 +44,26 @@ quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162
 def settingsScreen():
     screen.fill((18, 70, 45))
 
+global runningCust
+runningCust = True
 def customisationScreen():
-    running = True
+    runningCust = True
     while running:
-        screen.fill((128, 128, 128))
-        pygame.display.update()
-        quitButton.draw(screen)
         
         for event in pygame.event.get():
+
+
             if event.type == pygame.QUIT:
-                running = False #running is changed to False, meaning this loop stops
+                runningCust = False #running is changed to False, meaning this loop stops
 
             if quitButton.is_clicked():
-                None
+                runningCust = False
+
+            screen.fill((128, 128, 128))
+
+        quitButton.draw(screen)
+        pygame.display.update()
+
 
 
 def instructionsScreen():
