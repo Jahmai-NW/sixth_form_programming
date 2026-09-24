@@ -14,19 +14,19 @@ running = True #running set to true
 
 # titlePanel #####################
 font = pygame.font.Font('freesansbold.ttf', 70) #creates a font object with the specified font file and size
-titleMessage = font.render("Final Penalty Shootout", True, 	(18, 70, 45), (255, 215, 60)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
+titleMessage = font.render("Final Penalty Shootout", True, 	(255, 215, 60), (168, 33, 32)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
 titleRect = titleMessage.get_rect() #this gets the rectangular area of the title message
 titleRect.center = (500, 45) #coordinates of the center of the title message
 
 # mainMenuPanel ##################
 font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
-mainMenuMessage = font.render("Main Menu", True, (0, 255, 0), (10, 26, 47)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
+mainMenuMessage = font.render("Main Menu", True, (64, 170, 157), (168, 33, 32)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
 mainMenuRect = mainMenuMessage.get_rect() #this gets the rectangular area of the main menu message
 mainMenuRect.center = (500, 110) #coordinates of the center of the main menu message
 
 # creditsPanel ###################
-font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
-creditsTitle = font.render("Credits", True, (235, 235, 235), (255, 195, 0))
+font = pygame.font.Font('freesansbold.ttf', 50) #creates a font object with the specified font file and size
+creditsTitle = font.render("Credits", True, (235, 235, 235), (18, 18, 22))
 creditsTitleRect = creditsTitle.get_rect()
 creditsTitleRect.center = (500, 45)
 
@@ -35,7 +35,11 @@ creditsMessage1 = font.render("made by THE big J, Jahmai of course. big up Ms La
 credits1Rect = creditsMessage1.get_rect()
 credits1Rect.center = (500, 300)
 
-
+# customisationPanel #################
+font = pygame.font.Font('freesansbold.ttf', 60)
+customisationTitle = font.render("Customisation", True, (235, 235, 235), (11, 73, 127))
+customisationTitleRect = customisationTitle.get_rect()
+customisationTitleRect.center = (500, 45)
 
 
 newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
@@ -53,8 +57,18 @@ settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0
 quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0))
 
 backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
+custbacktoMainMenuButton = ButtonCreation(370, 525, 260, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
 
 creditsButton = ButtonCreation(100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0))
+
+team1CustomButton = ButtonCreation(100, 110, 200, 40, "Team 1", (104, 178, 17), (47, 159, 221))
+
+team2CustomButton = ButtonCreation(700, 110, 200, 40, "Team 2", (104, 178, 17), (47, 159, 221))
+
+team3CustomButton = ButtonCreation(100, 320, 200, 40, "Team 3", (104, 178, 17), (47, 159, 221))
+
+team4CustomButton = ButtonCreation(700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221))
+
 
 
 
@@ -76,7 +90,7 @@ while running: #as long as running is true
         if current_screen == "main_menu":
 
             # fill the screen with a color to wipe away anything from last frame
-            screen.fill((199, 0, 57)) #fills the screen with a color
+            screen.fill((168, 33, 32)) #fills the screen with a colour
 
             if event.type == pygame.QUIT:
                 running = False #running is changed to False, meaning this loop stops
@@ -112,9 +126,17 @@ while running: #as long as running is true
                 current_screen = "main_menu"
 
         elif current_screen == "customisation":
-            screen.fill((128, 128, 128))
-            if backtoMainMenuButton.is_clicked():
+            screen.fill((11, 73, 127))
+            if custbacktoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
+            elif team1CustomButton.is_clicked():
+                print("Team 1 has been chosen!")
+            elif team2CustomButton.is_clicked():
+                print("Team 2 has been chosen!")
+            elif team3CustomButton.is_clicked():
+                print("Team 3 has been chosen!")
+            elif team4CustomButton.is_clicked():
+                print("Team 4 has been chosen!")
 
         elif current_screen == "settings":
             screen.fill((18, 70, 45))
@@ -165,7 +187,12 @@ while running: #as long as running is true
 
     elif current_screen == "customisation":
 
-        backtoMainMenuButton.draw(screen)
+        screen.blit(customisationTitle, customisationTitleRect)
+        team1CustomButton.draw(screen)
+        team2CustomButton.draw(screen)
+        team3CustomButton.draw(screen)
+        team4CustomButton.draw(screen)
+        custbacktoMainMenuButton.draw(screen)
 
 
     elif current_screen == "settings":
@@ -198,7 +225,7 @@ while running: #as long as running is true
     # limits FPS to 60
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(120) / 1000
 
 
 pygame.quit()
