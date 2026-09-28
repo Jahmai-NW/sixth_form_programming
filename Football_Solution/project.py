@@ -5,10 +5,12 @@ from classes import * #imports all classes from the classes.py file
 pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 
+
 pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be displayed as the caption of the screen
 
 clock = pygame.time.Clock() #creates a clock object which keeps track of time
 running = True #running set to true
+
 
 
 
@@ -86,11 +88,13 @@ while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
+        handle_textbox_event(event)
 
         if current_screen == "main_menu":
 
             # fill the screen with a color to wipe away anything from last frame
             screen.fill((168, 33, 32)) #fills the screen with a colour
+
 
             if event.type == pygame.QUIT:
                 running = False #running is changed to False, meaning this loop stops
@@ -178,6 +182,7 @@ while running: #as long as running is true
         settingsButton.draw(screen)
         quitButton.draw(screen)
         creditsButton.draw(screen)
+        draw_textbox(screen)
 
 
     elif current_screen == "create_new_game":

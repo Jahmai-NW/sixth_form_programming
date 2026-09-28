@@ -127,3 +127,50 @@ class ViewScorePanel():
     #private buttons
     #private background
     None
+
+
+
+
+    # --- TEXTBOX STATE ---
+textbox_rect = pygame.Rect(100, 100, 200, 32)
+textbox_active = False
+textbox_text = ""
+textbox_color_inactive = pygame.Color('lightskyblue3')
+textbox_color_active = pygame.Color('dodgerblue2')
+textbox_color = textbox_color_inactive
+
+def handle_textbox_event(event):
+    global textbox_active, textbox_text, textbox_color
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        if textbox_rect.collidepoint(event.pos):
+            textbox_active = True
+        else:
+            textbox_active = False
+        textbox_color = textbox_color_active if textbox_active else textbox_color_inactive
+
+    if event.type == pygame.KEYDOWN and textbox_active:
+        if event.key == pygame.K_RETURN:
+            global currentUserName
+            currentUserName = ""
+            
+            print(textbox_text)
+            currentUserName = textbox_text
+            textbox_text = ""
+        elif event.key == pygame.K_BACKSPACE:
+            textbox_text = textbox_text[:-1]
+        else:
+            textbox_text += event.unicode
+
+
+def draw_textbox(screen):
+    font = pygame.font.Font(None, 32)
+    # Render text
+    txt_surface = font.render(textbox_text, True, textbox_color)
+
+    # Resize box if needed
+    textbox_rect.w = max(200, txt_surface.get_width() + 10)
+
+    # Draw text + box
+    screen.blit(txt_surface, (textbox_rect.x + 5, textbox_rect.y + 5))
+    pygame.draw.rect(screen, textbox_color, textbox_rect, 2)
