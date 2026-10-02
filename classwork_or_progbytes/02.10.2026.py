@@ -38,15 +38,14 @@ numbers = [5, 9, 12, 4, 43, 10, 60]
 # 
 
 
-
-for i in range(1, len(numbers)-1):
-    holder = numbers[i]
-    pos = i-1
-    if numbers[pos] > holder and pos >= 0:
-        numbers[pos] = holder
-        numbers[i] = numbers[pos]
-
-    holder = numbers[i+1]
+print(numbers)
+for i in range(1, len(numbers)): #for i in the range of 1 to 7
+    holder = numbers[i] # second item is stored inside holder
+    pos = i-1 # pos is set to index-1
+    while numbers[pos] > holder and pos >= 0: #as long as the previous number is bigger than the current number, and pos is bigger than/equal to 0
+        numbers[pos+1] = numbers[pos] # current item is set to previous item
+        pos = pos - 1 # pos is set to pos-1
+    numbers[pos+1] = holder #current item is stored inside holder
 
 print(numbers)
         
