@@ -157,6 +157,7 @@ def handle_textbox_event(event):
             print(textbox_text)
             currentUserName = textbox_text
             textbox_text = ""
+              
         elif event.key == pygame.K_BACKSPACE:
             textbox_text = textbox_text[:-1]
         else:
