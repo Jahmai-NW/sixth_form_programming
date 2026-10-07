@@ -25,21 +25,32 @@
 school = ["AAAA", "BBBB", "CCCC", "DDDD"]
 medal = [4,7,1,3]
 
-newResult = int(input("Please enter the new result: "))
-schoolnumber = int(input("Please enter the school number: "))
 
-if schoolnumber == 1:
-    medal[0] = newResult
+while True: 
 
-if schoolnumber == 2:
-    medal[1] = newResult
+    newResult = int(input("Please enter the new result: "))
+    schoolnumber = int(input("Please enter the school number: "))
 
-if schoolnumber == 3:
-    medal[2] = newResult
+    if schoolnumber == 1:
+        medal[0] = newResult
+        print(school)
+        print(medal)
 
-if schoolnumber == 4:
-    medal[3] = newResult
+    if schoolnumber == 2:
+        medal[1] = newResult
+        print(school)
+        print(medal)
 
-if schoolnumber == -1:
-    for i in range(len(medal)-1):
-        print("School number:", i+1, ",", "School name:", school[i], ",", "Number of medals:", medal[i])
+    if schoolnumber == 3:
+        medal[2] = newResult
+        print(school)
+        print(medal)
+
+    if schoolnumber == 4:
+        medal[3] = newResult
+        print(school)
+        print(medal)
+
+    if schoolnumber == -1:
+        for i in range(len(medal)):
+            print("School number:", i+1, ",", "School name:", school[i], ",", "Number of medals:", medal[i])
