@@ -1,106 +1,45 @@
-carPark = [
-    ["baka", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-    [" ", " ", " ", " ", " ", " ",],
-]
+# pupils = ["James", "Mary", "John", "Patricia", "Robert", "Liam", "Olivia", "Noah", "Emma", "Oliver", "River", "Willow"]
+# group1 = ["", "", "", "", "", ""]
+# group2 = ["", "", "", "", "", ""]
 
+# # print(len(pupils))
 
+# # for i in range(len(pupils)-1):
+# #     for j in range(len(pupils)+1):
+# #         group1[j] = pupils[i]
+# #         group2[j] = pupils[i+1]
 
-def emptyCarPark(carPark):
-    for i in range(len(carPark)):
-        for j in range(len(carPark[i])):
-            carPark[i][j] = " " 
+# place = 0
 
-    print("All spaces have been reset.")
-    print(" ")
-    menu()
+# while place <= 6:
+#     for i in range(len(pupils)-1):
+#         group1[place] = pupils[i]
+#         group2[place] = pupils[i+2]
+#         place += 1
 
-
-def parkACar(carPark):
-    Empty = False
-    while Empty == False:
-        rowInput = int(input("Please enter your desired row: "))
-        columnInput = int(input("Please enter your desired column: "))
-
-        if (carPark)[rowInput - 1][columnInput - 1] != " ":
-            rowInput = int(input("Please enter your desired row: "))
-            columnInput = int(input("Please enter your desired column: "))
-            Empty == False
-
-        else:
-            Empty = True
-            carReg = input("Please enter your car's registration number: ")
-            carPark[rowInput - 1][columnInput - 1] = carReg 
-            carPark.insert(rowInput-1, columnInput-1)
-            print(carPark)
-        break
-    menu()
-         
-     
-
-
-
-######## MAIN PROGRAM
-
-
-
-#DISPLAY MENU OF OPTIONS
-def menu():
-    while True: 
-        print("Please see Menu below: \n")
-        print("1. Reset all spaces in the car park to 'empty' ")
-        print("2. Park a car ")
-        print("3. Remove a car ")
-        print("4. Display the car ")
-        print("5. Quit\n")
-
-        print(carPark)
-
-        option = input("Enter your choice: ")
-
-##### accept choice
-
-        while option != "5":
-
-            if option == "1":
-                emptyCarPark(carPark)
-
-            if option == "2":
-                parkACar(carPark)
-
-menu()
+# print(group1)
+# print(group2)
     
 
 
+school = ["AAAA", "BBBB", "CCCC", "DDDD"]
+medal = [4,7,1,3]
 
+newResult = int(input("Please enter the new result: "))
+schoolnumber = int(input("Please enter the school number: "))
 
+if schoolnumber == 1:
+    medal[0] = newResult
 
+if schoolnumber == 2:
+    medal[1] = newResult
 
+if schoolnumber == 3:
+    medal[2] = newResult
 
+if schoolnumber == 4:
+    medal[3] = newResult
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if schoolnumber == -1:
+    for i in range(len(medal)-1):
+        print("School number:", i+1, ",", "School name:", school[i], ",", "Number of medals:", medal[i])
