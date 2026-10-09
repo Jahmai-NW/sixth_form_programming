@@ -408,5 +408,5 @@ while running:
     if option == -1:
         running = False
 
-    else:
+    elif option < -1 or option > 10:
         option = int(input("Sorry, that is an invalid choice. Please re-enter your choice: "))
