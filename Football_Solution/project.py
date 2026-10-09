@@ -2,6 +2,9 @@ import pygame #imports the pygame module
 import sys #imports the sys module
 from classes import * #imports all classes from the classes.py file
 
+
+
+
 pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 

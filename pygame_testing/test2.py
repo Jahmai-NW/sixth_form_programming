@@ -1,47 +1,43 @@
-import pygame, random
+import random
+import pygame as pd 
 
-pygame.init()
-WIDTH, HEIGHT = 800, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Penalty Shootout")
-clock = pygame.time.Clock()
+def sim_penalty():
+    x=[]
+    y=[]
+    for i in range(10000):
+        x_result = random.randint(0,1)
+        y_result = random.randint(0,1)
+        x.append(x_result)
+        y.append(y_result)
+        x_sum = pd.Series(x).sum()
+        y_sum = pd.Series(y).sum()
+        if i>=3 and i<=5:                                                              
+            if x_sum>3 and y_sum<3:
+                winner = 'X'
+                break
+            if y_sum>3 and x_sum<3:
+                winner = 'Y'
+                break
+            if y_sum==3 and x_sum==0:
+                winner = 'Y'
+                break    
+            if x_sum==3 and y_sum==0:
+                winner = 'X'
+                break
+        if i==5:
+            if x_sum > y_sum:
+                winner = 'X'
+                break
+            if x_sum < y_sum:
+                winner = 'Y'
+                break
+        if i>5:
+            if x_result > y_result:
+                winner = 'X'
+                break
+            if y_result > x_result:
+                winner = 'Y'
+                break
 
-WHITE, BLACK = (255, 255, 255), (0, 0, 0)
-FONT = pygame.font.Font(None, 48)
 
-ball = pygame.Rect(WIDTH//2 - 15, HEIGHT - 60, 30, 30)
-goal = pygame.Rect(WIDTH//2 - 100, 50, 200, 20)
-score = 0
-
-def show_text(text, y):
-    txt = FONT.render(text, True, BLACK)
-    rect = txt.get_rect(center=(WIDTH//2, y))
-    screen.blit(txt, rect)
-
-running = True
-shooting = False
-while running:
-    clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: running = False
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            shooting = True
-
-if shooting:
-    ball.y -= 10
-    if ball.colliderect(goal):
-        score += 1
-        ball.y = HEIGHT - 60
-        shooting = False
-    elif ball.y < 0:
-        ball.y = HEIGHT - 60
-        shooting = False
-
-    screen.fill(WHITE)
-    pygame.draw.rect(screen, BLACK, goal)
-    pygame.draw.ellipse(screen, BLACK, ball)
-    show_text(f"Score: {score}", HEIGHT - 30)
-    show_text("Press SPACE to Shoot", HEIGHT//2)
-    pygame.display.flip()
-
-pygame.quit()
+    return {'Team A':x_sum,'Team B':y_sum,'Total Penalties':i+1,'Winner':winner*2}
