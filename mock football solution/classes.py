@@ -1,4 +1,3 @@
-# import project
 import pygame
 
 class Player():
@@ -79,7 +78,7 @@ class ButtonCreation():
         self.text = text 
         self.colour = colour
         self.hover_colour = hover_colour
-        self.font = pygame.font.Font('freesansbold.ttf', 36)
+        self.font = pygame.font.Font('freesansbold.ttf', 25)
 
     def draw(self, screen):
         mouse_pos = pygame.mouse.get_pos()
