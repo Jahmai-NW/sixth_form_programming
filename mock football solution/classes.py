@@ -83,9 +83,9 @@ class ButtonCreation():
     def draw(self, screen):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(mouse_pos):
-            pygame.draw.rect(screen, self.hover_colour, self.rect)
+            pygame.draw.rect(screen, self.hover_colour, self.rect, width = 5)
         else:
-            pygame.draw.rect(screen, self.colour, self.rect)
+            pygame.draw.rect(screen, self.colour, self.rect, width = 5)
 
         text_surf = self.font.render(self.text, True, (255, 255, 255))
         screen.blit(text_surf, (self.rect.x + 10, self.rect.y + 10))
