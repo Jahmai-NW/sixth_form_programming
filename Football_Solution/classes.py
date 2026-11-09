@@ -148,7 +148,7 @@ def handle_textbox_event(event):
             textbox_active = True
         else:
             textbox_active = False
-        textbox_color = textbox_color_active if textbox_active else textbox_color_inactive
+        textbox_color = textbox_color_active if textbox_active else textbox_color_inactive #textbox colour is determined if text_box is active or not
 
     if event.type == pygame.KEYDOWN and textbox_active:
         if event.key == pygame.K_RETURN:
