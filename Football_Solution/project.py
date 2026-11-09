@@ -46,6 +46,12 @@ customisationTitle = font.render("Customisation", True, (235, 235, 235), (11, 73
 customisationTitleRect = customisationTitle.get_rect()
 customisationTitleRect.center = (500, 45)
 
+#### welcome player in new game screen
+font = pygame.font.Font('freesansbold.ttf', 60)
+welcomeTitle = font.render("Welcome" + str(currentUserName), True, (235, 235, 235), (11, 73, 127))
+welcomeTitleRect = customisationTitle.get_rect()
+welcomeTitleRect.center = (500, 45)
+
 
 newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
 
@@ -190,6 +196,7 @@ while running: #as long as running is true
 
     elif current_screen == "create_new_game":
 
+        screen.blit(welcomeTitle, welcomeTitleRect)
         backtoMainMenuButton.draw(screen)
 
 

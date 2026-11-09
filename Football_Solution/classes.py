@@ -135,6 +135,7 @@ class ViewScorePanel():
 textbox_rect = pygame.Rect(100, 100, 200, 32)
 textbox_active = False
 textbox_text = ""
+currentUserName = ""
 textbox_color_inactive = pygame.Color('lightskyblue3')
 textbox_color_active = pygame.Color('dodgerblue2')
 textbox_color = textbox_color_inactive
