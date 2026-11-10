@@ -8,6 +8,7 @@ from classes import * #imports all classes from the classes.py file
 pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 
+bgImage1 = pygame.image.load('sin pi.jpg')
 
 pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be displayed as the caption of the screen
 
@@ -55,30 +56,30 @@ welcomeTitleRect.center = (500, 45)
 
 newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
 
-loadGameButton = ButtonCreation(400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128))
+loadGameButton = ButtonCreation(400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128)) #creates a new load game object 
 
-customisationButton = ButtonCreation(400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128))
+customisationButton = ButtonCreation(400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128)) #creates a new customisation object 
 
-instructionsButton = ButtonCreation(400, 365, 200, 50, "  Instructions", (255, 195, 0), (0, 128, 128))
+instructionsButton = ButtonCreation(400, 365, 200, 50, "  Instructions", (255, 195, 0), (0, 128, 128)) #creates a new instruction object
 
-viewScoresButton = ButtonCreation(400, 420, 200, 50, "  View Scores", (255, 195, 0), (0, 128, 128))
+viewScoresButton = ButtonCreation(400, 420, 200, 50, "  View Scores", (255, 195, 0), (0, 128, 128)) #creates a new viewScores object
 
-settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0), (0, 128, 128))
+settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0), (0, 128, 128)) #creates a new settings object
 
-quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0))
+quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0)) #creates a new quit object
 
-backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
-custbacktoMainMenuButton = ButtonCreation(370, 525, 260, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))
+backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0)) #creates a new backtoMainMenu object
+custbacktoMainMenuButton = ButtonCreation(370, 525, 260, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))#creates a new custbacktoMainMenuButton object
 
-creditsButton = ButtonCreation(100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0))
+creditsButton = ButtonCreation(100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0)) #creates a quit object
 
-team1CustomButton = ButtonCreation(100, 110, 200, 40, "Team 1", (104, 178, 17), (47, 159, 221))
+team1CustomButton = ButtonCreation(100, 110, 200, 40, "Team 1", (104, 178, 17), (47, 159, 221)) #creates a team1CustomButon object
 
-team2CustomButton = ButtonCreation(700, 110, 200, 40, "Team 2", (104, 178, 17), (47, 159, 221))
+team2CustomButton = ButtonCreation(700, 110, 200, 40, "Team 2", (104, 178, 17), (47, 159, 221)) #creates a team2CustButton object
 
-team3CustomButton = ButtonCreation(100, 320, 200, 40, "Team 3", (104, 178, 17), (47, 159, 221))
+team3CustomButton = ButtonCreation(100, 320, 200, 40, "Team 3", (104, 178, 17), (47, 159, 221)) #creates a team3CustButton object 
 
-team4CustomButton = ButtonCreation(700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221))
+team4CustomButton = ButtonCreation(700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221)) #creates a team4CustButton object
 
 
 
@@ -97,12 +98,13 @@ while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
-        handle_textbox_event(event)
+        handle_textbox_event(event) #accesses method from classes file
 
         if current_screen == "main_menu":
 
             # fill the screen with a color to wipe away anything from last frame
             screen.fill((168, 33, 32)) #fills the screen with a colour
+            screen.blit(bgImage1, (0,0))
 
 
             if event.type == pygame.QUIT:
