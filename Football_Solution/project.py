@@ -8,7 +8,9 @@ from classes import * #imports all classes from the classes.py file
 pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 
-bgImage1 = pygame.image.load('sin pi.jpg')
+
+mainBG = Background("Github/Football_Solution/sin pi.jpg", 1000, 600)
+
 
 pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be displayed as the caption of the screen
 
@@ -97,14 +99,15 @@ current_screen = "main_menu" #current_screen variable to "main_menu" string
 while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
+    screen.fill((168, 33, 32))
+    mainBG.render(screen)
     for event in pygame.event.get():
         handle_textbox_event(event) #accesses method from classes file
 
         if current_screen == "main_menu":
 
             # fill the screen with a color to wipe away anything from last frame
-            screen.fill((168, 33, 32)) #fills the screen with a colour
-            screen.blit(bgImage1, (0,0))
+            # screen.fill((168, 33, 32)) #fills the screen with a colour
 
 
             if event.type == pygame.QUIT:

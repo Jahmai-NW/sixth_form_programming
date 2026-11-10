@@ -1,4 +1,5 @@
 import pygame
+import os
 
 class Player():
     #private username
@@ -176,3 +177,18 @@ def draw_textbox(screen):
     # Draw text + box
     screen.blit(txt_surface, (textbox_rect.x + 5, textbox_rect.y + 5))
     pygame.draw.rect(screen, textbox_color, textbox_rect, 2)
+
+
+class Background:
+
+    def __init__(self, image_file, world_width, world_height):
+
+        image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),image_file)
+        self.image = pygame.image.load(image_path).convert()
+        self.image = pygame.transform.scale(self.image, (world_width, world_height))
+        self.rect = self.image.get_rect(topleft=(0, 0))
+
+    #
+
+    def render(self, screen):
+        screen.blit(self.image)
