@@ -9,7 +9,14 @@ pygame.init() #initiates pygame module
 screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
 
 
-mainBG = Background("Github/Football_Solution/sin pi.jpg", 1000, 600)
+mainMenuBG = Background("Images/main_menu.jpg", 1000, 600)
+
+penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
+
+ballImage = pygame.image.load("Images/ball.png").convert_alpha()
+ballImage = pygame.transform.scale(ballImage, (35, 35))
+
+
 
 
 pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be displayed as the caption of the screen
@@ -83,7 +90,9 @@ team3CustomButton = ButtonCreation(100, 320, 200, 40, "Team 3", (104, 178, 17), 
 
 team4CustomButton = ButtonCreation(700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221)) #creates a team4CustButton object
 
+penaltyTaker = PenaltyTaker(0, "")
 
+startGameButton = ButtonCreation(400, 300, 200, 50, "Start Game",(255, 195, 0),(0, 128, 128))
 
 
 
@@ -100,7 +109,7 @@ while running: #as long as running is true
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     screen.fill((168, 33, 32))
-    mainBG.render(screen)
+    mainMenuBG.render(screen)
     for event in pygame.event.get():
         handle_textbox_event(event) #accesses method from classes file
 
@@ -140,8 +149,22 @@ while running: #as long as running is true
 
         elif current_screen == "create_new_game":
             screen.fill((18, 70, 45))
+
+            if startGameButton.is_clicked():
+                current_screen = "penalty_shootout"
+
             if backtoMainMenuButton.is_clicked():
                 current_screen = "main_menu"
+
+        elif current_screen == "penalty_shootout":
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+
+                if not penaltyTaker.ballMoving:
+                    selectedShot = penaltyTaker.selectShot(event.pos)
+
+                    if selectedShot is not None:
+                        print("Player selected:", selectedShot)
 
         elif current_screen == "customisation":
             screen.fill((11, 73, 127))
@@ -202,7 +225,19 @@ while running: #as long as running is true
     elif current_screen == "create_new_game":
 
         screen.blit(welcomeTitle, welcomeTitleRect)
+
+        startGameButton.draw(screen)
         backtoMainMenuButton.draw(screen)
+
+    elif current_screen == "penalty_shootout":
+
+        penaltyBG.render(screen)
+
+        penaltyTaker.updateBall() #update ball movement
+
+        #draw actual ball
+        ballRect = ballImage.get_rect( center=(penaltyTaker.ballX, penaltyTaker.ballY))
+        screen.blit(ballImage, ballRect)
 
 
     elif current_screen == "customisation":

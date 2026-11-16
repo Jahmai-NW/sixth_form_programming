@@ -34,10 +34,35 @@ class PenaltyTaker():
         self.totalScore = theTotalScore
         self.shotDirection = theShotDirection
 
-    def getTotalScore(self, totalScore):
+    # Ball starting position
+        self.ballX = 500 # Initial x-coordinate of the ball
+        self.ballY = 540 # Initial y-coordinate of the ball
+
+        # Ball destination
+        self.targetX = 500 # Initial x-coordinate of the target destination
+        self.targetY = 500 # Initial y-coordinate of the target destination
+
+        self.ballMoving = False # Flag to indicate if the ball is moving
+
+        # shooting zones represented as rectangles on the screen
+        self.shotZones = {
+            "Top Left": pygame.Rect(350, 150, 100, 100),
+            "Top Centre": pygame.Rect(450, 150, 100, 100),
+            "Top Right": pygame.Rect(550, 150, 100, 100),
+
+            "Middle Left": pygame.Rect(350, 250, 100, 100),
+            "Middle Centre": pygame.Rect(450, 250, 100, 100),
+            "Middle Right": pygame.Rect(550, 250, 100, 100),
+
+            "Bottom Left": pygame.Rect(350, 350, 100, 100),
+            "Bottom Centre": pygame.Rect(450, 350, 100, 100),
+            "Bottom Right": pygame.Rect(550, 350, 100, 100)
+        }
+
+    def setTotalScore(self, totalScore):
         self.totalScore = totalScore
 
-    def setTotalScore(self):
+    def getTotalScore(self):
         return self.totalScore
 
     def setShotDirection(self, shotDirection):
@@ -45,6 +70,44 @@ class PenaltyTaker():
 
     def getShotDirection(self):
         return self.shotDirection
+
+    def selectShot(self, mousePosition): #function to select the shot direction based on the mouse position
+
+        for zone, rectangle in self.shotZones.items(): #for every zone and rectangle in the shotZones dictionary, check if the mouse position is within the rectangle
+
+            if rectangle.collidepoint(mousePosition): #if the mouse position is within the rectangle, set the shot direction to the zone and set the target position to the center of the rectangle
+
+                self.shotDirection = zone #set the shot direction to the zone
+
+                self.targetX = rectangle.centerx #set the target position to the center of the rectangle
+                self.targetY = rectangle.centery #set the target position to the center of the rectangle
+
+                self.ballMoving = True #set the ball moving flag to True, showing that the ball is moving towards the target position
+
+                return zone #returns the zone that was selected based on the mouse position
+
+        return None #returns None if no zone was selected
+
+    def updateBall(self):
+
+        if self.ballMoving:
+
+            speed = 5
+
+            if self.ballX < self.targetX:
+                self.ballX = min(self.ballX + speed, self.targetX)
+
+            elif self.ballX > self.targetX:
+                self.ballX = max(self.ballX - speed, self.targetX)
+
+            if self.ballY < self.targetY:
+                self.ballY = min(self.ballY + speed, self.targetY)
+
+            elif self.ballY > self.targetY:
+                self.ballY = max(self.ballY - speed, self.targetY)
+
+            if self.ballX == self.targetX and self.ballY == self.targetY:
+                self.ballMoving = False
 
 
 class Goalkeeper():
