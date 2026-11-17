@@ -1,13 +1,7 @@
 import os
 import pygame
 import classes
-from classes import (
-    Background,
-    ButtonCreation,
-    PenaltyTaker,
-    draw_textbox,
-    handle_textbox_event,
-)
+from classes import (Background, ButtonCreation, PenaltyTaker, draw_textbox, handle_textbox_event)
 
 pygame.init()
 
@@ -20,11 +14,7 @@ mainMenuBG = Background("Images/main_menu.jpg", 1000, 600)
 penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
 
 # Ball image
-ball_path = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    "Images",
-    "ball.png",
-)
+ball_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Images", "ball.png")
 ballImage = pygame.image.load(ball_path).convert_alpha()
 ballImage = pygame.transform.scale(ballImage, (35, 35))
 
