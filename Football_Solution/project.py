@@ -1,286 +1,292 @@
-import pygame #imports the pygame module
-import sys #imports the sys module
-from classes import * #imports all classes from the classes.py file
+import os
+import pygame
+import classes
+from classes import (
+    Background,
+    ButtonCreation,
+    PenaltyTaker,
+    draw_textbox,
+    handle_textbox_event,
+)
 
+pygame.init()
 
+screen = pygame.display.set_mode((1000, 600))
+pygame.display.set_caption("Final Penalty Shootout")
+clock = pygame.time.Clock()
 
-
-pygame.init() #initiates pygame module
-screen = pygame.display.set_mode((1000, 600)) #establishes the size of the screen to be displayed
-
-
+# Backgrounds
 mainMenuBG = Background("Images/main_menu.jpg", 1000, 600)
-
 penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
 
-ballImage = pygame.image.load("Images/ball.png").convert_alpha()
+# Ball image
+ball_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "Images",
+    "ball.png",
+)
+ballImage = pygame.image.load(ball_path).convert_alpha()
 ballImage = pygame.transform.scale(ballImage, (35, 35))
 
+# Main menu title
+titleFont = pygame.font.Font("freesansbold.ttf", 70)
+titleMessage = titleFont.render(
+    "Final Penalty Shootout", True, (255, 215, 60), (168, 33, 32)
+)
+titleRect = titleMessage.get_rect(center=(500, 45))
 
+mainMenuFont = pygame.font.Font("freesansbold.ttf", 40)
+mainMenuMessage = mainMenuFont.render(
+    "Main Menu", True, (64, 170, 157), (168, 33, 32)
+)
+mainMenuRect = mainMenuMessage.get_rect(center=(500, 110))
 
+# Other screen titles
+creditsFont = pygame.font.Font("freesansbold.ttf", 50)
+creditsTitle = creditsFont.render(
+    "Credits", True, (235, 235, 235), (18, 18, 22)
+)
+creditsTitleRect = creditsTitle.get_rect(center=(500, 45))
 
-pygame.display.set_caption("Final Penalty Shootout") #establishes the text to be displayed as the caption of the screen
+messageFont = pygame.font.Font("freesansbold.ttf", 20)
+creditsMessage1 = messageFont.render(
+    "made by THE big J, Jahmai of course. big up Ms Lassami!",
+    True,
+    (255, 255, 255),
+    (120, 0, 35),
+)
+credits1Rect = creditsMessage1.get_rect(center=(500, 300))
 
-clock = pygame.time.Clock() #creates a clock object which keeps track of time
-running = True #running set to true
+customisationFont = pygame.font.Font("freesansbold.ttf", 60)
+customisationTitle = customisationFont.render(
+    "Customisation", True, (235, 235, 235), (11, 73, 127)
+)
+customisationTitleRect = customisationTitle.get_rect(center=(500, 45))
 
+welcomeFont = pygame.font.Font("freesansbold.ttf", 60)
 
+# Buttons
+newGameButton = ButtonCreation(
+    400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)
+)
+loadGameButton = ButtonCreation(
+    400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128)
+)
+customisationButton = ButtonCreation(
+    400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128)
+)
+instructionsButton = ButtonCreation(
+    400, 365, 200, 50, "  Instructions", (255, 195, 0), (0, 128, 128)
+)
+viewScoresButton = ButtonCreation(
+    400, 420, 200, 50, "  View Scores", (255, 195, 0), (0, 128, 128)
+)
+settingsButton = ButtonCreation(
+    400, 475, 200, 50, "     Settings", (255, 195, 0), (0, 128, 128)
+)
+quitButton = ButtonCreation(
+    800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0)
+)
+backtoMainMenuButton = ButtonCreation(
+    600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0)
+)
+custbacktoMainMenuButton = ButtonCreation(
+    370, 525, 260, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0)
+)
+creditsButton = ButtonCreation(
+    100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0)
+)
 
+team1CustomButton = ButtonCreation(
+    100, 110, 200, 40, "Team 1", (104, 178, 17), (47, 159, 221)
+)
+team2CustomButton = ButtonCreation(
+    700, 110, 200, 40, "Team 2", (104, 178, 17), (47, 159, 221)
+)
+team3CustomButton = ButtonCreation(
+    100, 320, 200, 40, "Team 3", (104, 178, 17), (47, 159, 221)
+)
+team4CustomButton = ButtonCreation(
+    700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221)
+)
 
-# titlePanel #####################
-font = pygame.font.Font('freesansbold.ttf', 70) #creates a font object with the specified font file and size
-titleMessage = font.render("Final Penalty Shootout", True, 	(255, 215, 60), (168, 33, 32)) #creates a text message to be displayed on the screen, with the text "Final Penalty Shootout", in colour (18, 70, 45) with a background colour of (255, 215, 60)
-titleRect = titleMessage.get_rect() #this gets the rectangular area of the title message
-titleRect.center = (500, 45) #coordinates of the center of the title message
-
-# mainMenuPanel ##################
-font = pygame.font.Font('freesansbold.ttf', 40) #creates a font object with the specified font file and size
-mainMenuMessage = font.render("Main Menu", True, (64, 170, 157), (168, 33, 32)) #creates a text message to be displayed on the screen, with the text "Main Menu", 
-mainMenuRect = mainMenuMessage.get_rect() #this gets the rectangular area of the main menu message
-mainMenuRect.center = (500, 110) #coordinates of the center of the main menu message
-
-# creditsPanel ###################
-font = pygame.font.Font('freesansbold.ttf', 50) #creates a font object with the specified font file and size
-creditsTitle = font.render("Credits", True, (235, 235, 235), (18, 18, 22))
-creditsTitleRect = creditsTitle.get_rect()
-creditsTitleRect.center = (500, 45)
-
-font = pygame.font.Font('freesansbold.ttf', 20) #creates a font object with the specified font file and size
-creditsMessage1 = font.render("made by THE big J, Jahmai of course. big up Ms Lassami! ", True, (255, 255, 255), (120, 0, 35))
-credits1Rect = creditsMessage1.get_rect()
-credits1Rect.center = (500, 300)
-
-# customisationPanel #################
-font = pygame.font.Font('freesansbold.ttf', 60)
-customisationTitle = font.render("Customisation", True, (235, 235, 235), (11, 73, 127))
-customisationTitleRect = customisationTitle.get_rect()
-customisationTitleRect.center = (500, 45)
-
-#### welcome player in new game screen
-font = pygame.font.Font('freesansbold.ttf', 60)
-welcomeTitle = font.render("Welcome" + str(currentUserName), True, (235, 235, 235), (11, 73, 127))
-welcomeTitleRect = customisationTitle.get_rect()
-welcomeTitleRect.center = (500, 45)
-
-
-newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)) #creates a new button object with the specified position (500, 300), size (400, 200), text "New Game", colour (0, 255, 0) and hover colour (0, 128, 128)
-
-loadGameButton = ButtonCreation(400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128)) #creates a new load game object 
-
-customisationButton = ButtonCreation(400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128)) #creates a new customisation object 
-
-instructionsButton = ButtonCreation(400, 365, 200, 50, "  Instructions", (255, 195, 0), (0, 128, 128)) #creates a new instruction object
-
-viewScoresButton = ButtonCreation(400, 420, 200, 50, "  View Scores", (255, 195, 0), (0, 128, 128)) #creates a new viewScores object
-
-settingsButton = ButtonCreation(400, 475, 200, 50, "     Settings", (255, 195, 0), (0, 128, 128)) #creates a new settings object
-
-quitButton = ButtonCreation(800, 500, 100, 50, "  Quit", (10, 26, 47), (212, 162, 0)) #creates a new quit object
-
-backtoMainMenuButton = ButtonCreation(600, 525, 300, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0)) #creates a new backtoMainMenu object
-custbacktoMainMenuButton = ButtonCreation(370, 525, 260, 50, "Back to Main Menu", (10, 26, 47), (212, 162, 0))#creates a new custbacktoMainMenuButton object
-
-creditsButton = ButtonCreation(100, 500, 120, 50, "Credits", (10, 26, 47), (212, 162, 0)) #creates a quit object
-
-team1CustomButton = ButtonCreation(100, 110, 200, 40, "Team 1", (104, 178, 17), (47, 159, 221)) #creates a team1CustomButon object
-
-team2CustomButton = ButtonCreation(700, 110, 200, 40, "Team 2", (104, 178, 17), (47, 159, 221)) #creates a team2CustButton object
-
-team3CustomButton = ButtonCreation(100, 320, 200, 40, "Team 3", (104, 178, 17), (47, 159, 221)) #creates a team3CustButton object 
-
-team4CustomButton = ButtonCreation(700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221)) #creates a team4CustButton object
+startGameButton = ButtonCreation(
+    400, 300, 200, 50, "Start Game", (255, 195, 0), (0, 128, 128)
+)
 
 penaltyTaker = PenaltyTaker(0, "")
 
-startGameButton = ButtonCreation(400, 300, 200, 50, "Start Game",(255, 195, 0),(0, 128, 128))
+
+def clicked(button, event):
+    """Return True when the left mouse button is pressed on a button."""
+    return (
+        event.type == pygame.MOUSEBUTTONDOWN
+        and event.button == 1
+        and button.rect.collidepoint(event.pos)
+    )
 
 
+# Drawing functions: each one draws its screen's background and contents.
 
-#################################################################################################################
-
-
-
-
-
-running = True #running set to true
-current_screen = "main_menu" #current_screen variable to "main_menu" string
-
-while running: #as long as running is true
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    screen.fill((168, 33, 32))
+def draw_main_menu():
     mainMenuBG.render(screen)
+    screen.blit(titleMessage, titleRect)
+    screen.blit(mainMenuMessage, mainMenuRect)
+
+    newGameButton.draw(screen)
+    loadGameButton.draw(screen)
+    customisationButton.draw(screen)
+    instructionsButton.draw(screen)
+    viewScoresButton.draw(screen)
+    settingsButton.draw(screen)
+    quitButton.draw(screen)
+    creditsButton.draw(screen)
+    draw_textbox(screen)
+
+
+def draw_new_game():
+    screen.fill((18, 70, 45))
+
+    welcomeMessage = welcomeFont.render(
+        f"Welcome {classes.currentUserName}",
+        True,
+        (235, 235, 235),
+        (11, 73, 127),
+    )
+    welcomeRect = welcomeMessage.get_rect(center=(500, 100))
+    screen.blit(welcomeMessage, welcomeRect)
+
+    startGameButton.draw(screen)
+    backtoMainMenuButton.draw(screen)
+
+
+def draw_penalty_shootout():
+    penaltyBG.render(screen)
+    penaltyTaker.updateBall()
+
+    ballRect = ballImage.get_rect(
+        center=(penaltyTaker.ballX, penaltyTaker.ballY)
+    )
+    screen.blit(ballImage, ballRect)
+
+
+def draw_customisation():
+    screen.fill((11, 73, 127))
+    screen.blit(customisationTitle, customisationTitleRect)
+
+    team1CustomButton.draw(screen)
+    team2CustomButton.draw(screen)
+    team3CustomButton.draw(screen)
+    team4CustomButton.draw(screen)
+    custbacktoMainMenuButton.draw(screen)
+
+
+def draw_settings():
+    screen.fill((18, 70, 45))
+    backtoMainMenuButton.draw(screen)
+
+
+def draw_instructions():
+    screen.fill((18, 70, 45))
+    backtoMainMenuButton.draw(screen)
+
+
+def draw_view_scores():
+    screen.fill((18, 70, 45))
+    backtoMainMenuButton.draw(screen)
+
+
+def draw_credits():
+    screen.fill((18, 18, 22))
+    screen.blit(creditsTitle, creditsTitleRect)
+    screen.blit(creditsMessage1, credits1Rect)
+    backtoMainMenuButton.draw(screen)
+
+
+def draw_current_screen():
+    if current_screen == "main_menu":
+        draw_main_menu()
+    elif current_screen == "create_new_game":
+        draw_new_game()
+    elif current_screen == "penalty_shootout":
+        draw_penalty_shootout()
+    elif current_screen == "customisation":
+        draw_customisation()
+    elif current_screen == "settings":
+        draw_settings()
+    elif current_screen == "instructions":
+        draw_instructions()
+    elif current_screen == "view_scores":
+        draw_view_scores()
+    elif current_screen == "credits":
+        draw_credits()
+
+
+running = True
+current_screen = "main_menu"
+
+while running:
     for event in pygame.event.get():
-        handle_textbox_event(event) #accesses method from classes file
+        handle_textbox_event(event)
 
-        if current_screen == "main_menu":
+        if event.type == pygame.QUIT:
+            running = False
 
-            # fill the screen with a color to wipe away anything from last frame
-            # screen.fill((168, 33, 32)) #fills the screen with a colour
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
 
+            if current_screen == "main_menu":
+                if clicked(newGameButton, event):
+                    current_screen = "create_new_game"
+                elif clicked(loadGameButton, event):
+                    print("Loading Previous Slot....")
+                elif clicked(customisationButton, event):
+                    current_screen = "customisation"
+                elif clicked(instructionsButton, event):
+                    current_screen = "instructions"
+                elif clicked(viewScoresButton, event):
+                    current_screen = "view_scores"
+                elif clicked(settingsButton, event):
+                    current_screen = "settings"
+                elif clicked(creditsButton, event):
+                    current_screen = "credits"
+                elif clicked(quitButton, event):
+                    running = False
 
-            if event.type == pygame.QUIT:
-                running = False #running is changed to False, meaning this loop stops
+            elif current_screen == "create_new_game":
+                if clicked(startGameButton, event):
+                    current_screen = "penalty_shootout"
+                elif clicked(backtoMainMenuButton, event):
+                    current_screen = "main_menu"
 
-            if newGameButton.is_clicked():
-                current_screen = "create_new_game" #current_screen overwritten to "create_new_game" string
-
-            if loadGameButton.is_clicked():
-                print("Loading Previous Slot....")
-
-            if customisationButton.is_clicked():
-                current_screen = "customisation"
-
-            if instructionsButton.is_clicked():
-                current_screen = "instructions"
-
-            if viewScoresButton.is_clicked():
-                current_screen = "view_scores"
-
-            if settingsButton.is_clicked():
-                current_screen = "settings"
-
-            if creditsButton.is_clicked():
-                current_screen = "credits"
-
-            if quitButton.is_clicked():
-                running = False #running set to False
-
-
-        elif current_screen == "create_new_game":
-            screen.fill((18, 70, 45))
-
-            if startGameButton.is_clicked():
-                current_screen = "penalty_shootout"
-
-            if backtoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
-
-        elif current_screen == "penalty_shootout":
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-
+            elif current_screen == "penalty_shootout":
                 if not penaltyTaker.ballMoving:
                     selectedShot = penaltyTaker.selectShot(event.pos)
-
                     if selectedShot is not None:
                         print("Player selected:", selectedShot)
 
-        elif current_screen == "customisation":
-            screen.fill((11, 73, 127))
-            if custbacktoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
-            elif team1CustomButton.is_clicked():
-                print("Team 1 has been chosen!")
-            elif team2CustomButton.is_clicked():
-                print("Team 2 has been chosen!")
-            elif team3CustomButton.is_clicked():
-                print("Team 3 has been chosen!")
-            elif team4CustomButton.is_clicked():
-                print("Team 4 has been chosen!")
+            elif current_screen == "customisation":
+                if clicked(custbacktoMainMenuButton, event):
+                    current_screen = "main_menu"
+                elif clicked(team1CustomButton, event):
+                    print("Team 1 has been chosen!")
+                elif clicked(team2CustomButton, event):
+                    print("Team 2 has been chosen!")
+                elif clicked(team3CustomButton, event):
+                    print("Team 3 has been chosen!")
+                elif clicked(team4CustomButton, event):
+                    print("Team 4 has been chosen!")
 
-        elif current_screen == "settings":
-            screen.fill((18, 70, 45))
-            if backtoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
+            elif current_screen in (
+                "settings",
+                "instructions",
+                "view_scores",
+                "credits",
+            ):
+                if clicked(backtoMainMenuButton, event):
+                    current_screen = "main_menu"
 
-        elif current_screen == "instructions":
-            screen.fill((18, 70, 45))
-            if backtoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
-
-        elif current_screen == "view_scores":
-            screen.fill((18, 70, 45))
-            if backtoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
-
-        elif current_screen == "credits":
-            screen.fill((18, 18, 22))
-            if backtoMainMenuButton.is_clicked():
-                current_screen = "main_menu"
-
-
-    
-    mouse_pos = pygame.mouse.get_pos()  # stores the (x,y) coordinates into
-    # the variable as a tuple
-    mouse_click = pygame.mouse.get_pressed()[0]
-
-
-####### drawing, titles, symbols, buttons, etc
-    if current_screen == "main_menu":
-        screen.blit(titleMessage, titleRect)
-        screen.blit(mainMenuMessage, mainMenuRect)
-
-        newGameButton.draw(screen) #draws buttons onto the screen
-        loadGameButton.draw(screen)
-        customisationButton.draw(screen)
-        instructionsButton.draw(screen)
-        viewScoresButton.draw(screen)
-        settingsButton.draw(screen)
-        quitButton.draw(screen)
-        creditsButton.draw(screen)
-        draw_textbox(screen)
-
-
-    elif current_screen == "create_new_game":
-
-        screen.blit(welcomeTitle, welcomeTitleRect)
-
-        startGameButton.draw(screen)
-        backtoMainMenuButton.draw(screen)
-
-    elif current_screen == "penalty_shootout":
-
-        penaltyBG.render(screen)
-
-        penaltyTaker.updateBall() #update ball movement
-
-        #draw actual ball
-        ballRect = ballImage.get_rect( center=(penaltyTaker.ballX, penaltyTaker.ballY))
-        screen.blit(ballImage, ballRect)
-
-
-    elif current_screen == "customisation":
-
-        screen.blit(customisationTitle, customisationTitleRect)
-        team1CustomButton.draw(screen)
-        team2CustomButton.draw(screen)
-        team3CustomButton.draw(screen)
-        team4CustomButton.draw(screen)
-        custbacktoMainMenuButton.draw(screen)
-
-
-    elif current_screen == "settings":
-
-        backtoMainMenuButton.draw(screen)
-
-
-    elif current_screen == "instructions":
-
-        backtoMainMenuButton.draw(screen)
-
-
-    elif current_screen == "view_scores":
-
-        backtoMainMenuButton.draw(screen)
-
-
-    elif current_screen == "credits":
-
-        screen.blit(creditsTitle, creditsTitleRect)
-        screen.blit(creditsMessage1, credits1Rect)
-        backtoMainMenuButton.draw(screen)
-
-
-
-
-
+    draw_current_screen()
     pygame.display.update()
-
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
-    dt = clock.tick(120) / 1000
-
+    clock.tick(120)
 
 pygame.quit()
