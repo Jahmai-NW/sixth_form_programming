@@ -12,6 +12,7 @@ clock = pygame.time.Clock()
 # Backgrounds
 mainMenuBG = Background("Images/main_menu.jpg", 1000, 600)
 penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
+newGameMenuBG = Background("Images/celebration.jpg", 1000, 600)
 
 # Ball image
 ball_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Images", "ball.png")
@@ -20,48 +21,32 @@ ballImage = pygame.transform.scale(ballImage, (35, 35))
 
 # Main menu title
 titleFont = pygame.font.Font("freesansbold.ttf", 70)
-titleMessage = titleFont.render(
-    "Final Penalty Shootout", True, (255, 215, 60), (168, 33, 32)
-)
+titleMessage = titleFont.render("Final Penalty Shootout", True, (255, 215, 60), (168, 33, 32))
 titleRect = titleMessage.get_rect(center=(500, 45))
 
 mainMenuFont = pygame.font.Font("freesansbold.ttf", 40)
-mainMenuMessage = mainMenuFont.render(
-    "Main Menu", True, (64, 170, 157), (168, 33, 32)
-)
+mainMenuMessage = mainMenuFont.render("Main Menu", True, (64, 170, 157), (168, 33, 32))
 mainMenuRect = mainMenuMessage.get_rect(center=(500, 110))
 
 # Other screen titles
 creditsFont = pygame.font.Font("freesansbold.ttf", 50)
-creditsTitle = creditsFont.render(
-    "Credits", True, (235, 235, 235), (18, 18, 22)
-)
+creditsTitle = creditsFont.render("Credits", True, (235, 235, 235), (18, 18, 22))
 creditsTitleRect = creditsTitle.get_rect(center=(500, 45))
 
 messageFont = pygame.font.Font("freesansbold.ttf", 20)
-creditsMessage1 = messageFont.render(
-    "made by THE big J, Jahmai of course. big up Ms Lassami!",
-    True,
-    (255, 255, 255),
-    (120, 0, 35),
-)
+creditsMessage1 = messageFont.render("made by THE big J, Jahmai of course. big up Ms Lassami!", True, (255, 255, 255), (120, 0, 35),)
 credits1Rect = creditsMessage1.get_rect(center=(500, 300))
 
 customisationFont = pygame.font.Font("freesansbold.ttf", 60)
-customisationTitle = customisationFont.render(
-    "Customisation", True, (235, 235, 235), (11, 73, 127)
-)
+customisationTitle = customisationFont.render("Customisation", True, (235, 235, 235), (11, 73, 127))
 customisationTitleRect = customisationTitle.get_rect(center=(500, 45))
 
 welcomeFont = pygame.font.Font("freesansbold.ttf", 60)
 
 # Buttons
-newGameButton = ButtonCreation(
-    400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128)
-)
-loadGameButton = ButtonCreation(
-    400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128)
-)
+newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128))
+loadGameButton = ButtonCreation(400, 255, 200, 50, "   Load Game", (255, 195, 0), (0, 128, 128))
+
 customisationButton = ButtonCreation(
     400, 310, 200, 50, "Customisation", (255, 195, 0), (0, 128, 128)
 )
@@ -108,7 +93,7 @@ penaltyTaker = PenaltyTaker(0, "")
 
 
 def clicked(button, event):
-    """Return True when the left mouse button is pressed on a button."""
+    #returns True when left mouse button clicked
     return (
         event.type == pygame.MOUSEBUTTONDOWN
         and event.button == 1
@@ -135,7 +120,8 @@ def draw_main_menu():
 
 
 def draw_new_game():
-    screen.fill((18, 70, 45))
+    # screen.fill((18, 70, 45))
+    newGameMenuBG.render(screen)
 
     welcomeMessage = welcomeFont.render(
         f"Welcome {classes.currentUserName}",
