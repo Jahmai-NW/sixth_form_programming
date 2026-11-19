@@ -1,68 +1,80 @@
+# --- Libraries --- #
+
+# Import pygame
 import pygame
 
-pygame.init()
+# INITialize pygame
 
-SCREEN_SIZE = (640, 480)
-SCALE = 8
-screen = pygame.display.set_mode(SCREEN_SIZE)
-pygame.display.set_caption("Goalkeeper Sprite")
 
-# Draw at the sprite's native pixel size.
-sprite = pygame.Surface((32, 32), pygame.SRCALPHA)
+pygame.init() 
+# --- Window & Cursor --- #
 
-# Colors
-skin = (233, 173, 120)
-hair = (56, 37, 31)
-green = (22, 131, 74)
-green_light = (32, 168, 93)
-yellow = (243, 213, 41)
-blue = (38, 60, 112)
-dark = (48, 32, 29)
+# Open a WINDOW of size [500, 300]
+window=pygame.display.set_mode([500,300]) 
 
-def pixel_rect(x, y, width, height, color):
-    pygame.draw.rect(sprite, color, (x, y, width, height))
+# SET_VISIBLE of cursor to False
+pygame.mouse.set_visible(False) 
+# Set the variable cursor_size to 10
+cursor_size=10
 
-# Hair and face
-pixel_rect(12, 4, 8, 3, hair)
-pixel_rect(11, 6, 2, 3, hair)
-pixel_rect(13, 7, 7, 6, skin)
-pixel_rect(18, 9, 1, 1, dark)
 
-# Arms and gloves
-pixel_rect(8, 13, 3, 3, green)
-pixel_rect(5, 11, 4, 3, skin)
-pixel_rect(2, 9, 4, 4, yellow)
-pixel_rect(21, 13, 3, 3, green)
-pixel_rect(23, 11, 4, 3, skin)
-pixel_rect(26, 9, 4, 4, yellow)
+#### ---- MAIN LOOP ---- ####
+running=True 
+# Create a variable called running with value True
+while running: 
 
-# Jersey
-pixel_rect(11, 13, 10, 7, green)
-pixel_rect(14, 13, 4, 7, green_light)
-pixel_rect(15, 14, 2, 2, yellow)
+# Loop while running
 
-# Shorts and legs
-pixel_rect(11, 20, 10, 4, blue)
-pixel_rect(12, 24, 3, 4, skin)
-pixel_rect(18, 24, 3, 4, skin)
-pixel_rect(10, 28, 6, 2, dark)
-pixel_rect(17, 28, 6, 2, dark)
 
-# Scale up without blurring the pixel art.
-big_sprite = pygame.transform.scale(sprite, (32 * SCALE, 32 * SCALE))
-sprite_rect = big_sprite.get_rect(center=(SCREEN_SIZE[0] // 2, SCREEN_SIZE[1] // 2))
 
-clock = pygame.time.Clock()
-running = True
+    # --- Event Loop --- #
 
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    # Create an EVENT LOOP
+    for event in pygame.event.get(): 
 
-    screen.fill((70, 150, 80))
-    screen.blit(big_sprite, sprite_rect)
-    pygame.display.flip()
-    clock.tick(60)
+        # Check for the QUIT event
+        if event.type==pygame.QUIT: 
+            running=False 
 
-pygame.quit()
+            # Set running to False
+            # ---> TEST AFTER THIS LINE <--- #
+
+
+
+        # --- The cursor increases size while clicking --- #
+
+        # Check if the event TYPE is MOUSEBUTTONDOWN
+
+        if event.type==pygame.MOUSEBUTTONDOWN: 
+            cursor_size=20
+            # Set cursor_size to 20
+            # ---> TEST AFTER THIS LINE <--- #
+
+
+        # Otherwise if the event TYPE is MOUSEBUTTONUP
+        elif event.type==pygame.MOUSEBUTTONUP: 
+            cursor_size=10
+        
+ 
+
+
+    # GET_POSition of mouse and store it in x, y
+    x,y=pygame.mouse.get_pos() 
+    # ---> TEST AFTER THIS LINE <--- #
+
+
+
+    # --- Draw --- #
+
+    # FILL the window with WHITE
+    window.fill((215,158,222)) 
+
+
+    # Draw a CIRCLE of any COLOR at position (x, y)
+    # with cursor_size
+    pygame.draw.circle(window,(255,255,255),(x,y),cursor_size,10) 
+
+
+    # FLIP the display
+    pygame.display.flip() 
+    # ---> TEST AFTER THIS LINE <--- #

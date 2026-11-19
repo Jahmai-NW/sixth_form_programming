@@ -1,13 +1,15 @@
 import pygame
 import os
+import time
 
 class Player():
     #private username
     #private HighScore
 
-    def __init__(self, theUsername, theHighScore):
+    def __init__(self, theUsername, theHighScore, theSelectedTeam):
         self.username = theUsername
         self.highScore = theHighScore
+        self.selectedTeam = theSelectedTeam
 
     def setUsername(self, username):
         self.username = username
@@ -20,6 +22,12 @@ class Player():
 
     def getHighScore(self):
         return self.highScore
+
+    def setSelectedTeam(self, newTeam):
+        self.selectedTeam = newTeam
+
+    def getSelectedTeam(self):
+        return self.selectedTeam
 
 
 
@@ -107,7 +115,10 @@ class PenaltyTaker():
                 self.ballY = max(self.ballY - speed, self.targetY)
 
             if self.ballX == self.targetX and self.ballY == self.targetY:
-                self.ballMoving = False
+                self.ballMoving = False 
+                time.sleep(0.5) # time delay of ball respawning
+                self.ballX = 500 # Initial x-coordinate of the ball
+                self.ballY = 540 # Initial y-coordinate of the ball
 
 
 class Goalkeeper():
@@ -151,7 +162,7 @@ class ButtonCreation():
         else:
             pygame.draw.rect(screen, self.colour, self.rect, width=5)
 
-        text_surf = self.font.render(self.text, True, (255, 255, 255))
+        text_surf = self.font.render(self.text, True, (150, 0, 0))
         screen.blit(text_surf, (self.rect.x + 10, self.rect.y + 10))
 
     def is_clicked(self):

@@ -1,17 +1,19 @@
 import os
 import pygame
 import classes
-from classes import (Background, ButtonCreation, PenaltyTaker, draw_textbox, handle_textbox_event)
+from classes import (Player, Background, ButtonCreation, PenaltyTaker, draw_textbox, handle_textbox_event)
 
 pygame.init()
 
 screen = pygame.display.set_mode((1000, 600))
 pygame.display.set_caption("Final Penalty Shootout")
 clock = pygame.time.Clock()
+newPlayer = Player(classes.currentUserName, 0, None)
 
 # Backgrounds
 mainMenuBG = Background("Images/main_menu.jpg", 1000, 600)
 penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
+customisationMenuBG = Background("Images/custMenu.jpg", 1000, 600)
 newGameMenuBG = Background("Images/celebration.jpg", 1000, 600)
 
 # Ball image
@@ -41,7 +43,7 @@ customisationFont = pygame.font.Font("freesansbold.ttf", 60)
 customisationTitle = customisationFont.render("Customisation", True, (235, 235, 235), (11, 73, 127))
 customisationTitleRect = customisationTitle.get_rect(center=(500, 45))
 
-welcomeFont = pygame.font.Font("freesansbold.ttf", 60)
+welcomeFont = pygame.font.Font("freesansbold.ttf", 45)
 
 # Buttons
 newGameButton = ButtonCreation(400, 200, 200, 50, "   New Game", (255, 195, 0), (0, 128, 128))
@@ -85,7 +87,11 @@ team4CustomButton = ButtonCreation(
     700, 320, 200, 40, "Team 4", (104, 178, 17), (47, 159, 221)
 )
 
-startGameButton = ButtonCreation(
+penaltyTakerGameButton = ButtonCreation(
+    400, 300, 200, 50, "Start Game", (255, 195, 0), (0, 128, 128)
+)
+
+goalkeeperGameButton = ButtonCreation(
     400, 300, 200, 50, "Start Game", (255, 195, 0), (0, 128, 128)
 )
 
@@ -101,7 +107,7 @@ def clicked(button, event):
     )
 
 
-# Drawing functions: each one draws its screen's background and contents.
+# Drawing functions
 
 def draw_main_menu():
     mainMenuBG.render(screen)
@@ -119,12 +125,12 @@ def draw_main_menu():
     draw_textbox(screen)
 
 
-def draw_new_game():
+def draw_new_gamePENALTYTAKER():
     # screen.fill((18, 70, 45))
     newGameMenuBG.render(screen)
 
     welcomeMessage = welcomeFont.render(
-        f"Welcome {classes.currentUserName}",
+        f"Welcome {classes.currentUserName}, you play for {newPlayer.selectedTeam}",
         True,
         (235, 235, 235),
         (11, 73, 127),
@@ -132,7 +138,7 @@ def draw_new_game():
     welcomeRect = welcomeMessage.get_rect(center=(500, 100))
     screen.blit(welcomeMessage, welcomeRect)
 
-    startGameButton.draw(screen)
+    penaltyTakerGameButton.draw(screen)
     backtoMainMenuButton.draw(screen)
 
 
@@ -147,7 +153,9 @@ def draw_penalty_shootout():
 
 
 def draw_customisation():
-    screen.fill((11, 73, 127))
+    # screen.fill((11, 73, 127))
+    customisationMenuBG.render(screen)
+    
     screen.blit(customisationTitle, customisationTitleRect)
 
     team1CustomButton.draw(screen)
@@ -183,7 +191,7 @@ def draw_current_screen():
     if current_screen == "main_menu":
         draw_main_menu()
     elif current_screen == "create_new_game":
-        draw_new_game()
+        draw_new_gamePENALTYTAKER()
     elif current_screen == "penalty_shootout":
         draw_penalty_shootout()
     elif current_screen == "customisation":
@@ -229,7 +237,7 @@ while running:
                     running = False
 
             elif current_screen == "create_new_game":
-                if clicked(startGameButton, event):
+                if clicked(penaltyTakerGameButton, event):
                     current_screen = "penalty_shootout"
                 elif clicked(backtoMainMenuButton, event):
                     current_screen = "main_menu"
@@ -243,14 +251,22 @@ while running:
             elif current_screen == "customisation":
                 if clicked(custbacktoMainMenuButton, event):
                     current_screen = "main_menu"
+
                 elif clicked(team1CustomButton, event):
                     print("Team 1 has been chosen!")
+                    newPlayer.setSelectedTeam("Team 1")
+
                 elif clicked(team2CustomButton, event):
                     print("Team 2 has been chosen!")
+                    newPlayer.setSelectedTeam("Team 2")
+
                 elif clicked(team3CustomButton, event):
                     print("Team 3 has been chosen!")
+                    newPlayer.setSelectedTeam("Team 3")
+
                 elif clicked(team4CustomButton, event):
                     print("Team 4 has been chosen!")
+                    newPlayer.setSelectedTeam("Team 4")
 
             elif current_screen in (
                 "settings",
