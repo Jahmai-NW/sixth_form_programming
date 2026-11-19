@@ -16,6 +16,15 @@ penaltyBG = Background("Images/penalty_background.jpg", 1000, 600)
 customisationMenuBG = Background("Images/custMenu.jpg", 1000, 600)
 newGameMenuBG = Background("Images/celebration.jpg", 1000, 600)
 
+# Celebration Images
+scoredImagePath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Images", "scoredImage.jpg")
+scoredBG = pygame.image.load(scoredImagePath).convert_alpha()
+scoredBG = pygame.transform.scale(scoredBG, (1000, 600))
+
+missedImagePath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Images", "missImage.jpg")
+missedBG = pygame.image.load(missedImagePath).convert_alpha()
+missedBG = pygame.transform.scale(missedBG, (1000, 600))
+
 # Ball image
 ball_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Images", "ball.png")
 ballImage = pygame.image.load(ball_path).convert_alpha()
@@ -243,10 +252,13 @@ while running:
                     current_screen = "main_menu"
 
             elif current_screen == "penalty_shootout":
-                if not penaltyTaker.ballMoving:
+                if penaltyTaker.ballMoving == False:
                     selectedShot = penaltyTaker.selectShot(event.pos)
-                    if selectedShot is not None:
+                    if selectedShot != None:
                         print("Player selected:", selectedShot)
+                        if selectedShot == "Middle Centre":
+                            scoredBG.blit(screen)
+
 
             elif current_screen == "customisation":
                 if clicked(custbacktoMainMenuButton, event):
@@ -282,3 +294,5 @@ while running:
     clock.tick(120)
 
 pygame.quit()
+
+#if player scores, image pops up, time limiot
